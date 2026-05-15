@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(lake build *)",
+      "PowerShell(lake env *)",
+      "PowerShell(lake exe *)",
+      "PowerShell(git config *)",
+      "PowerShell(gh repo *)"
+    ]
+  }
+}

@@ -19,19 +19,19 @@ namespace HessianPrototype
 variable {E : Type*}
 variable [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
 
-/-- `x₀` 是 `f` 的局部极小点。 -/
+/-- `x₀` 是 `f` 的局部极小点：在 `x₀` 的某个邻域内都有 `f x₀ ≤ f y`。 -/
 def localMinimumAt (f : E → ℝ) (x₀ : E) : Prop :=
   ∃ ε > 0, ∀ y : E, dist y x₀ < ε → f x₀ ≤ f y
 
-/-- Hessian 算子：梯度场的 Fréchet 导数。 -/
+/-- Hessian 算子：即梯度映射 `y ↦ gradient f y` 在 `x` 处的导数。 -/
 noncomputable def hessianOp (f : E → ℝ) (x : E) : E →L[ℝ] E :=
   fderiv ℝ (fun y => gradient f y) x
 
-/-- 连续线性算子半正定：对所有 `v` 都有 `⟪A v, v⟫ ≥ 0`。 -/
+/-- 连续线性算子半正定：对所有方向 `v` 都有 `0 ≤ inner ℝ (A v) v`。 -/
 def posSemidefOp (A : E →L[ℝ] E) : Prop :=
   ∀ v : E, 0 ≤ inner ℝ (A v) v
 
-/-- `f` 在 `x` 处的 Hessian 半正定。 -/
+/-- `f` 在 `x` 处的 Hessian 算子半正定。 -/
 def hessianPosSemidefAt (f : E → ℝ) (x : E) : Prop :=
   posSemidefOp (hessianOp f x)
 
@@ -79,7 +79,7 @@ theorem hessianPosSemidefAt_const (c : ℝ) (x : E) :
   rw [hessianOp_const]
   exact posSemidefOp_zero
 
-/-- 仿射直线 `t ↦ x₀ + t • v` 的导数是 `v`。 -/
+/-- 仿射直线 `t ↦ x₀ + t • v` 在任意参数 `t` 处的一维导数是方向向量 `v`。 -/
 lemma hasDerivAt_line (x₀ v : E) (t : ℝ) :
     HasDerivAt (fun s : ℝ => x₀ + s • v) v t := by
   have hid : HasDerivAt (fun s : ℝ => s) 1 t := hasDerivAt_id' (𝕜 := ℝ) (x := t)
@@ -87,7 +87,7 @@ lemma hasDerivAt_line (x₀ v : E) (t : ℝ) :
     simpa using HasDerivAt.smul_const hid v
   simpa using hsmul.const_add x₀
 
-/-- 把局部极小点限制到任意仿射直线上，仍得到 `0` 处的一维局部极小。 -/
+/-- 若 `x₀` 是 `f` 的局部极小点，则沿任意方向 `v` 的限制函数 `t ↦ f (x₀ + t • v)` 在 `0` 处有局部极小。 -/
 lemma localMinimumAt_comp_line {f : E → ℝ} {x₀ : E}
     (hmin : localMinimumAt f x₀) (v : E) :
     localMinimumAt (fun t : ℝ => f (x₀ + t • v)) 0 := by
@@ -115,7 +115,7 @@ lemma localMinimumAt_comp_line {f : E → ℝ} {x₀ : E}
         _ < ε := hmul
     simpa using hmin (x₀ + t • v) hdist
 
-/-- 若显式梯度场可用，则 `f` 沿直线限制的一维导数由内积给出。 -/
+/-- 若 `g` 在直线点 `x₀ + t • v` 给出 `f` 的梯度，则沿直线限制函数的一维导数为 `inner ℝ (g (x₀ + t • v)) v`。 -/
 lemma hasDerivAt_comp_line_of_hasGradientAt
     {f : E → ℝ} {g : E → E} {x₀ v : E} {t : ℝ}
     (hgrad : HasGradientAt f (g (x₀ + t • v)) (x₀ + t • v)) :
@@ -124,7 +124,7 @@ lemma hasDerivAt_comp_line_of_hasGradientAt
   have hcomp := hgrad.hasFDerivAt.comp_hasDerivAt t (hasDerivAt_line x₀ v t)
   simpa [Function.comp_def, InnerProductSpace.toDual_apply_apply] using hcomp
 
-/-- 梯度场与方向向量的内积沿直线的一维导数。 -/
+/-- 若 `g` 在 `x₀` 处的 Fréchet 导数为 `A`，则 `t ↦ inner ℝ (g (x₀ + t • v)) v` 在 `0` 处的导数为 `inner ℝ (A v) v`。 -/
 lemma hasDerivAt_inner_gradientField_line
     {g : E → E} {x₀ v : E} {A : E →L[ℝ] E}
     (hHess : HasFDerivAt g A x₀) :
@@ -139,10 +139,10 @@ lemma hasDerivAt_inner_gradientField_line
 
 /-- 局部极小点的一维二阶必要条件。
 
-这是当前证明中隔离出的实分析难点：需要证明如果 `φ` 在 `0` 处局部极小，
-在 `0` 处导数为 `0`，并且局部导数字段 `φ'` 在 `0` 处导数为 `l`，则 `l ≥ 0`。
-后续可用 LeanSearch / `#check` 搜索：`IsLocalMin`、`HasDerivAt.deriv`、
-`deriv_nonneg_of_localMin`、斜率不等式，以及 `Filter.Tendsto` 的单侧商极限引理。 -/
+若 `φ` 在 `0` 处局部极小，`φ` 在 `0` 处导数为 `0`，并且某个局部导数字段
+`φ'` 在 `0` 处导数为 `l`，则 `0 ≤ l`。证明思路是反证：若 `l < 0`，则
+`φ'` 在 `0` 的右邻域内为负；再由中值定理得到某个足够小的 `b > 0` 满足
+`φ b < φ 0`，与局部极小性矛盾。 -/
 lemma oneDim_secondOrderNecessary
     {φ φ' : ℝ → ℝ} {l : ℝ}
     (hmin : localMinimumAt φ 0)
@@ -212,7 +212,10 @@ lemma oneDim_secondOrderNecessary
     simpa [Real.dist_eq, abs_of_pos hb_pos] using hb_lt_ε
   linarith
 
-/-- 使用显式梯度场表述的二阶必要条件。 -/
+/-- 使用显式梯度场表述的二阶必要条件。
+
+若 `x₀` 是 `f` 的局部极小点，`g` 在 `x₀` 附近给出 `f` 的梯度，`g x₀ = 0`，
+且 `g` 在 `x₀` 处的 Fréchet 导数为 `A`，则 `A` 半正定。 -/
 theorem second_order_necessary_condition_gradient_field
     {f : E → ℝ} {g : E → E} {x₀ : E} {A : E →L[ℝ] E}
     (hmin : localMinimumAt f x₀)
@@ -239,7 +242,9 @@ theorem second_order_necessary_condition_gradient_field
     simpa [φ'] using hasDerivAt_inner_gradientField_line (g := g) (x₀ := x₀) (v := v) hHess
   exact oneDim_secondOrderNecessary hmin_line hderivφ hderivφ' hφ'
 
-/-- 直接使用 mathlib 中非可计算 `gradient f` 字段的版本。 -/
+/-- 直接使用 mathlib 中 `gradient f` 表述的二阶必要条件。
+
+该版本由显式梯度场版本推出，其中梯度场取为 `fun x => gradient f x`。 -/
 theorem second_order_necessary_condition_gradient
     {f : E → ℝ} {x₀ : E} {A : E →L[ℝ] E}
     (hmin : localMinimumAt f x₀)
@@ -257,7 +262,7 @@ section MatrixRepresentation
 /-- `n` 维欧氏空间。 -/
 abbrev Euc (n : ℕ) := EuclideanSpace ℝ (Fin n)
 
-/-- 连续线性算子在标准基下的矩阵表示。 -/
+/-- 连续线性算子在标准基下的矩阵表示，分量为 `inner ℝ eᵢ (A eⱼ)`。 -/
 noncomputable def hessianMatrixOfOp {n : ℕ} (A : Euc n →L[ℝ] Euc n) :
     Matrix (Fin n) (Fin n) ℝ :=
   fun i j => inner ℝ (EuclideanSpace.single i 1) (A (EuclideanSpace.single j 1))

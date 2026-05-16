@@ -2,56 +2,56 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand*\HyPL@Entry[1]{}
 \HyPL@Entry{0<</S/D>>}
-\@writefile{toc}{\contentsline {section}{\numberline {1}引言}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}数学背景与主定理}{2}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{定义 2.1（局部极小点）}{2}{paragraph*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{定义 2.2（梯度）}{2}{paragraph*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{定义 2.3（Hessian 矩阵）}{2}{paragraph*.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{定义 2.4（矩阵半正定）}{2}{paragraph*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{定理 2.1（Hessian 半正定的二阶必要条件）}{2}{paragraph*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{完整数学证明}{3}{paragraph*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{证明}{3}{paragraph*.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{第一步：\(\varphi \) 在 \(t=0\) 处局部极小。}{3}{paragraph*.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{第二步：\(\varphi \) 在 \(t=0\) 附近可导且 \(\varphi '(0)=0\)。}{3}{paragraph*.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{第三步：\(\varphi '\) 在 \(t=0\) 处可导，且 \(\varphi ''(0)=v^{\top } H_f(x_0) v\)。}{3}{paragraph*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{第四步：一元二阶必要条件推出 \(v^{\top }Hv\ge 0\)。}{4}{paragraph*.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{第五步：方向任意性得到矩阵半正定。}{4}{paragraph*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}从数学表述到 Lean 表述}{4}{section.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 表 3.1 数学概念与 Lean 表达对照}}{4}{table.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}核心定义与代码实现}{5}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}局部极小点}{5}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Hessian 算子}{5}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}算子的半正定性}{6}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Hessian 半正定性}{6}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}形式化设计与证明处理}{6}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}为何采用 Hessian operator 而非 Hessian matrix}{6}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}为何提供两个主定理版本}{7}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{版本一（显式梯度场版本）}{7}{paragraph*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{版本二（直接 gradient 版本）}{8}{paragraph*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}为何独立封装一元二阶必要条件}{8}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}证明结构的模块化分解}{9}{subsection.5.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 表 5.1 数学证明步骤与 Lean 引理对应}}{9}{table.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}辅助引理与证明结构}{9}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}直线限制函数}{9}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}局部极小沿直线保持}{9}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{引理 6.1}{9}{paragraph*.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{证明}{9}{paragraph*.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}沿直线的一阶导数与梯度}{10}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{引理 6.2}{10}{paragraph*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{证明}{10}{paragraph*.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Hessian 二次型的表示}{10}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{引理 6.3}{10}{paragraph*.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{证明}{10}{paragraph*.21}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}一元二阶必要条件}{11}{subsection.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{引理 6.4（一元函数的二阶必要条件）}{11}{paragraph*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{证明}{11}{paragraph*.23}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}主定理的形式化证明}{12}{section.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}显式梯度场版本}{12}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}直接使用 \texttt  {gradient f} 的版本}{12}{subsection.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}与传统 Hessian 矩阵的关系}{13}{section.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}结论}{13}{section.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A}Lean 完整代码}{15}{appendix.A}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}根模块 \texttt  {Hessian.lean}}{15}{subsection.A.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}主形式化文件 \texttt  {Hessian/Basic.lean}}{15}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}引言}{3}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}数学背景与主定理}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{定义 2.1（局部极小点）}{4}{paragraph*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{定义 2.2（梯度）}{4}{paragraph*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{定义 2.3（Hessian 矩阵）}{4}{paragraph*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{定义 2.4（矩阵半正定）}{4}{paragraph*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{定理 2.1（Hessian 半正定的二阶必要条件）}{4}{paragraph*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{完整数学证明}{4}{paragraph*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{证明}{4}{paragraph*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{第一步：\(\varphi \) 在 \(t=0\) 处局部极小。}{5}{paragraph*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{第二步：\(\varphi \) 在 \(t=0\) 附近可导且 \(\varphi '(0)=0\)。}{5}{paragraph*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{第三步：\(\varphi '\) 在 \(t=0\) 处可导，且 \(\varphi ''(0)=v^{\top } H_f(x_0) v\)。}{5}{paragraph*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{第四步：一元二阶必要条件推出 \(v^{\top }Hv\ge 0\)。}{5}{paragraph*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{第五步：方向任意性得到矩阵半正定。}{6}{paragraph*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}从数学表述到 Lean 表述}{6}{section.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 表 3.1 数学概念与 Lean 表达对照}}{6}{table.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}核心定义与代码实现}{7}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}局部极小点}{7}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Hessian 算子}{7}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}算子的半正定性}{7}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Hessian 半正定性}{7}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}形式化设计与证明处理}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}为何采用 Hessian operator 而非 Hessian matrix}{8}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}为何提供两个主定理版本}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{版本一（显式梯度场版本）}{9}{paragraph*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{版本二（直接 gradient 版本）}{9}{paragraph*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}为何独立封装一元二阶必要条件}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}证明结构的模块化分解}{10}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 表 5.1 数学证明步骤与 Lean 引理对应}}{10}{table.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}辅助引理与证明结构}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}直线限制函数}{11}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}局部极小沿直线保持}{11}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{引理 6.1}{11}{paragraph*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{证明}{11}{paragraph*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}沿直线的一阶导数与梯度}{11}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{引理 6.2}{11}{paragraph*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{证明}{11}{paragraph*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Hessian 二次型的表示}{12}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{引理 6.3}{12}{paragraph*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{证明}{12}{paragraph*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}一元二阶必要条件}{12}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{引理 6.4（一元函数的二阶必要条件）}{12}{paragraph*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{证明}{12}{paragraph*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}主定理的形式化证明}{13}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}显式梯度场版本}{13}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}直接使用 \texttt  {gradient f} 的版本}{14}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}与传统 Hessian 矩阵的关系}{14}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}结论}{14}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Lean 完整代码}{16}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}根模块 \texttt  {Hessian.lean}}{16}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}主形式化文件 \texttt  {Hessian/Basic.lean}}{16}{subsection.A.2}\protected@file@percent }
 \xdef \mintedoldcachechecksum{\detokenize{DA218C270BB06588C3CF37BAFCE47605:17}}
-\gdef \@abspage@last{22}
+\gdef \@abspage@last{23}

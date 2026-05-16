@@ -27,20 +27,8 @@
   \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 }
 
-% TODO: 当前环境未检测到 Noto Serif CJK SC；安装后将自动优先用于中文正文。
-\IfFontExistsTF{Noto Serif CJK SC}{
-  \setCJKmainfont{Noto Serif CJK SC}
-}{
-  \setCJKmainfont{Microsoft YaHei}
-}
-
-% TODO: 当前环境未检测到 Noto Sans Mono CJK SC；安装后将自动优先用于中文等宽文本。
-\IfFontExistsTF{Noto Sans Mono CJK SC}{
-  \setCJKmonofont{Noto Sans Mono CJK SC}
-}{
-  \setCJKmonofont{Microsoft YaHei}
-}
-
+% 中文字体沿用 ctexart 在当前系统上的默认 Windows 字体配置。
+% TODO: 当前环境未检测到 Noto Serif CJK SC / Noto Sans Mono CJK SC；如需统一跨平台字体，可安装后再显式启用。
 \definecolor{leanbg}{RGB}{248,248,248}
 \setminted[lean4]{
   fontsize=\small,
@@ -61,6 +49,8 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
+\clearpage
 
 \section*{摘要}
 二阶必要条件是多元函数极值理论的基本结论之一：若光滑函数在局部极小点处的梯度为零，则其 Hessian 矩阵必为半正定。本文在 Lean 4 证明助手中，基于 mathlib 数学库，完成了该定理的完整形式化证明。由于 mathlib 的微分学框架建立在 Fréchet 导数与内积空间之上，本文将经典教材中“二阶偏导数矩阵”的表述等价地转化为“梯度映射的 Fréchet 导数”，并以线性算子的半正定性替代矩阵半正定性。证明采用直线限制法将多元问题化为一元函数的极值问题，并通过一元二阶必要条件和中值定理完成最终推导。文章详细给出了从数学定义到 Lean 代码的术语转换表，系统讨论了形式化过程中的核心设计决策，并展示了如何将传统证明模块化地分解为可独立验证的辅助引理。本文涉及的 Lean 文件在项目所使用的 Lean 4 与 mathlib 环境下通过编译，主证明未使用 \texttt{sorry}、\texttt{admit} 或 \texttt{axiom}。

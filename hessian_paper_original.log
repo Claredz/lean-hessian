@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.28)  16 MAY 2026 13:36
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.28)  16 MAY 2026 13:44
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -999,55 +999,29 @@ nguage=dflt;+smcp;"
 (fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
 
 
-
-Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault' (SimSun(0)).
-
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "Microsoft YaHei/I" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'MicrosoftYaHei(0)' created for font
-(fontspec)             'Microsoft YaHei' with options [Script={CJK}].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Microsoft
-(fontspec)             YaHei/OT:script=hani;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Microsoft
-(fontspec)             YaHei/B/OT:script=hani;language=dflt;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Microsoft
-(fontspec)             YaHei/BI/OT:script=hani;language=dflt;"
-
-
-Package xeCJK Warning: Redefining CJKfamily `\CJKttdefault' (FangSong).
-
 (./hessian_paper_original.aux)
 \openout1 = `hessian_paper_original.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 
 Package fontspec Info: 
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
@@ -1055,56 +1029,56 @@ Package fontspec Info:
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 62.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 62.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 62.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 62.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 62.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 62.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 62.
-LaTeX Font Info:    Redeclaring math accent \check on input line 62.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 62.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 62.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 62.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 62.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 62.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 50.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 50.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 50.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 50.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 50.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 50.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 50.
+LaTeX Font Info:    Redeclaring math accent \check on input line 50.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 50.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 50.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 50.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 50.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 62.
+(Font)              `operators' in the math version `normal' on input line 50.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 62.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 50.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 62.
+(Font)              `operators' in the math version `bold' on input line 50.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 62.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 50.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 62.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 62.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 62.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 62.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/JuliaMono(0)/m/n on input line 62.
+(Font)                  OT1/cmtt/m/n --> TU/JuliaMono(0)/m/n on input line 50.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 62.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 62.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 62.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/JuliaMono(0)/b/n on input line 62.
+(Font)                  OT1/cmtt/m/n --> TU/JuliaMono(0)/b/n on input line 50.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1140,63 +1114,99 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 62.
+Package hyperref Info: Link coloring ON on input line 50.
 (./hessian_paper_original.out) (./hessian_paper_original.out)
 \@outlinefile=\write4
 \openout4 = `hessian_paper_original.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 64.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
 
 
 (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 64.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
 
 
 (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+(./hessian_paper_original.toc
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "FangSong/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "FangSong/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "FangSong/I" (it probably
+(fontspec)             doesn't exist).
+
 LaTeX Font Info:    Font shape `TU/JuliaMono(0)/m/n' will be
-(Font)              scaled to size 9.43881pt on input line 66.
+(Font)              scaled to size 9.43881pt on input line 44.
+
+Package fontspec Info: 
+(fontspec)             Font family 'FangSong(0)' created for font 'FangSong'
+(fontspec)             with options [Script={CJK}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
+
 
 
 [1
 
-]
+])
+\tf@toc=\write5
+\openout5 = `hessian_paper_original.toc'.
 
 
-LaTeX Font Warning: Font shape `TU/MicrosoftYaHei(0)/m/sl' undefined
-(Font)              using `TU/MicrosoftYaHei(0)/m/n' instead on input line 109.
 
-
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <12.045> not availab
+le
+(Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 
+53.
 [2]
 
-[3]
+[3
+
+]
+
+[4]
+
+[5]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 174.
+(caption)                particular \caption on input line 164.
 See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 7963) in paragraph at lines 192--192
-[]|\TU/JuliaMono(0)/m/n/12.045 fderiv ℝ (fun y => gradient f y) x\TU/MicrosoftY
-aHei(0)/m/n/12.045 ，|  类 型 \TU/JuliaMono(0)/m/n/12.045 E
+Underfull \hbox (badness 7963) in paragraph at lines 182--182
+[]|\TU/JuliaMono(0)/m/n/12.045 fderiv ℝ (fun y => gradient f y) x\TU/SimSun(0)/
+m/n/12.045 ，|  类 型 \TU/JuliaMono(0)/m/n/12.045 E
  []
 
 
 
-[4]
-\pydata@fh@0=\write5
-\openout5 = `_04F82E70607A019B869BFCABE60225EC.data.minted'.
+[6]
+\pydata@fh@0=\write6
+\openout6 = `_04F82E70607A019B869BFCABE60225EC.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260516133610 04F82E70607A019B869BFC
+runsystem(latexminted config  --timestamp 20260516134433 04F82E70607A019B869BFC
 ABE60225EC)...executed.
 
  (./_04F82E70607A019B869BFCABE60225EC.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260516133610 04F82E70607A019B8
+runsystem(latexminted cleanconfig  --timestamp 20260516134433 04F82E70607A019B8
 69BFCABE60225EC)...executed.
 
 
@@ -1208,76 +1218,76 @@ LaTeX Font Info:    Font shape `TU/JuliaMono(0)/b/n' will be
 (Font)              scaled to size 8.25896pt on input line 2.
 )
 (./_minted/12A997446B472F67E36DDCBA6A89C9CE.highlight.minted)
-
-[5] (./_minted/2D2009D18A4972B4AAA8795034BCCB60.highlight.minted)
+(./_minted/2D2009D18A4972B4AAA8795034BCCB60.highlight.minted)
 (./_minted/9314E16896DD2CBC54AFC359DCBC6B4A.highlight.minted)
 
-[6] (./_minted/3594091D7260586DC32F3CF3EA03931C.highlight.minted)
-(./_minted/F55DAB6D5DF10EA8714B7C59BBBF721C.highlight.minted
+[7]
 
-[7]) (./_minted/0CA81B75314D2CC0EE06D86C0FF18BA1.highlight.minted)
+[8] (./_minted/3594091D7260586DC32F3CF3EA03931C.highlight.minted)
+(./_minted/F55DAB6D5DF10EA8714B7C59BBBF721C.highlight.minted)
 
-[8]
+[9] (./_minted/0CA81B75314D2CC0EE06D86C0FF18BA1.highlight.minted)
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 300.
+(caption)                particular \caption on input line 290.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (21.23311pt too wide) in paragraph at lines 312--312
+Overfull \hbox (21.23311pt too wide) in paragraph at lines 302--302
 []|\TU/JuliaMono(0)/m/n/12.045 hasDerivAt_comp_line_of_hasGradientAt| 
  []
 
 
-Overfull \hbox (9.90652pt too wide) in paragraph at lines 312--312
+Overfull \hbox (9.90652pt too wide) in paragraph at lines 302--302
 []|\TU/JuliaMono(0)/m/n/12.045 hasDerivAt_inner_gradientField_line| 
  []
 
 
-Overfull \hbox (77.86597pt too wide) in paragraph at lines 312--312
+Overfull \hbox (77.86597pt too wide) in paragraph at lines 302--302
 []|\TU/JuliaMono(0)/m/n/12.045 second_order_necessary_condition_gradient_field|
  
  []
 
-(./_minted/1E1478525F890D7947B413C4BF69A378.highlight.minted
 
-[9]) (./_minted/5EC7F778460B29E569A406C144CE18F1.highlight.minted)
 
-[10] (./_minted/5F98FCBECB3889F10D4FE4EE8F6A3AE6.highlight.minted)
-(./_minted/0CA81B75314D2CC0EE06D86C0FF18BA1.highlight.minted)
+[10] (./_minted/1E1478525F890D7947B413C4BF69A378.highlight.minted)
+(./_minted/5EC7F778460B29E569A406C144CE18F1.highlight.minted)
 
-[11] (./_minted/05BA16C4315E6B58773E447EA9AF5BF5.highlight.minted)
+[11] (./_minted/5F98FCBECB3889F10D4FE4EE8F6A3AE6.highlight.minted)
+(./_minted/0CA81B75314D2CC0EE06D86C0FF18BA1.highlight.minted
+
+[12]) (./_minted/05BA16C4315E6B58773E447EA9AF5BF5.highlight.minted)
 LaTeX Font Info:    Font shape `TU/JuliaMono(0)/b/n' will be
-(Font)              scaled to size 11.79852pt on input line 440.
+(Font)              scaled to size 11.79852pt on input line 430.
 
-(./_minted/F55DAB6D5DF10EA8714B7C59BBBF721C.highlight.minted)
+(./_minted/F55DAB6D5DF10EA8714B7C59BBBF721C.highlight.minted
 
-[12] (./_minted/E62770F23E7E7A06CAFDC410B2B3D01F.highlight.minted)
-Overfull \hbox (18.56847pt too wide) in paragraph at lines 473--474
+[13]) (./_minted/E62770F23E7E7A06CAFDC410B2B3D01F.highlight.minted)
+
+[14]
+Overfull \hbox (18.56847pt too wide) in paragraph at lines 463--464
 []\TU/lmr/m/n/12.045 [4] The mathlib Community. Mathlib4 Documentation. [][]$[]
 [][][][] [] [] [] [][][][][][][][][][][][][][][][][][][][][] []
  []
 
 
 
-[13]
-
-[14] (./_minted/9DBC30CE0E67E97FFC375B40B53E7AD3.highlight.minted
+[15] (./_minted/9DBC30CE0E67E97FFC375B40B53E7AD3.highlight.minted
 LaTeX Font Info:    Font shape `TU/JuliaMono(0)/m/it' will be
 (Font)              scaled to size 8.25896pt on input line 2.
 )
 (./_minted/ED011F408C891E636C633E495614FD9D.highlight.minted
 
-LaTeX Font Warning: Font shape `TU/MicrosoftYaHei(0)/m/it' undefined
-(Font)              using `TU/MicrosoftYaHei(0)/m/n' instead on input line 23.
+LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 23.
 
 
 
-[15
+[16
 
 ]
 
-[16]
+[17]
 LaTeX Font Info:    Font shape `TU/JuliaMono(0)/m/n' will be
 (Font)              scaled to size 7.0791pt on input line 91.
 LaTeX Font Info:    Font shape `TU/JuliaMono(0)/m/it' will be
@@ -1286,20 +1296,20 @@ LaTeX Font Info:    Font shape `TU/JuliaMono(0)/m/n' will be
 (Font)              scaled to size 5.11269pt on input line 91.
 
 
-[17]
-
 [18]
 
 [19]
 
 [20]
+
+[21]
 LaTeX Font Info:    Font shape `TU/JuliaMono(0)/b/n' will be
 (Font)              scaled to size 7.0791pt on input line 240.
 
 
-[21])
+[22])
 
-[22] (./hessian_paper_original.aux)
+[23] (./hessian_paper_original.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -1313,12 +1323,12 @@ Package rerunfilecheck Info: File `hessian_paper_original.out' has not changed.
 (rerunfilecheck)             Checksum: D12BD5D69AA6D619E7F134B0A9268DD1;3607.
  ) 
 Here is how much of TeX's memory you used:
- 22892 strings out of 468389
- 532958 string characters out of 5444297
- 1085354 words of memory out of 5000000
- 51011 multiletter control sequences out of 15000+600000
- 640132 words of font info for 141 fonts, out of 8000000 for 9000
+ 22883 strings out of 468389
+ 530073 string characters out of 5444297
+ 1085587 words of memory out of 5000000
+ 51002 multiletter control sequences out of 15000+600000
+ 640124 words of font info for 140 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,10n,116p,749b,1016s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,10n,116p,749b,1014s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on hessian_paper_original.pdf (22 pages).
+Output written on hessian_paper_original.pdf (23 pages).

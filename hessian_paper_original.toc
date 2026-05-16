@@ -1,0 +1,49 @@
+\contentsline {section}{\numberline {1}引言}{3}{section.1}%
+\contentsline {section}{\numberline {2}数学背景与主定理}{3}{section.2}%
+\contentsline {paragraph}{定义 2.1（局部极小点）}{4}{paragraph*.3}%
+\contentsline {paragraph}{定义 2.2（梯度）}{4}{paragraph*.4}%
+\contentsline {paragraph}{定义 2.3（Hessian 矩阵）}{4}{paragraph*.5}%
+\contentsline {paragraph}{定义 2.4（矩阵半正定）}{4}{paragraph*.6}%
+\contentsline {paragraph}{定理 2.1（Hessian 半正定的二阶必要条件）}{4}{paragraph*.7}%
+\contentsline {paragraph}{完整数学证明}{4}{paragraph*.8}%
+\contentsline {paragraph}{证明}{4}{paragraph*.9}%
+\contentsline {paragraph}{第一步：\(\varphi \) 在 \(t=0\) 处局部极小。}{5}{paragraph*.10}%
+\contentsline {paragraph}{第二步：\(\varphi \) 在 \(t=0\) 附近可导且 \(\varphi '(0)=0\)。}{5}{paragraph*.11}%
+\contentsline {paragraph}{第三步：\(\varphi '\) 在 \(t=0\) 处可导，且 \(\varphi ''(0)=v^{\top } H_f(x_0) v\)。}{5}{paragraph*.12}%
+\contentsline {paragraph}{第四步：一元二阶必要条件推出 \(v^{\top }Hv\ge 0\)。}{5}{paragraph*.13}%
+\contentsline {paragraph}{第五步：方向任意性得到矩阵半正定。}{6}{paragraph*.14}%
+\contentsline {section}{\numberline {3}从数学表述到 Lean 表述}{6}{section.3}%
+\contentsline {section}{\numberline {4}核心定义与代码实现}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}局部极小点}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Hessian 算子}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}算子的半正定性}{7}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Hessian 半正定性}{7}{subsection.4.4}%
+\contentsline {section}{\numberline {5}形式化设计与证明处理}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}为何采用 Hessian operator 而非 Hessian matrix}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}为何提供两个主定理版本}{8}{subsection.5.2}%
+\contentsline {paragraph}{版本一（显式梯度场版本）}{9}{paragraph*.15}%
+\contentsline {paragraph}{版本二（直接 gradient 版本）}{9}{paragraph*.16}%
+\contentsline {subsection}{\numberline {5.3}为何独立封装一元二阶必要条件}{9}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}证明结构的模块化分解}{10}{subsection.5.4}%
+\contentsline {section}{\numberline {6}辅助引理与证明结构}{10}{section.6}%
+\contentsline {subsection}{\numberline {6.1}直线限制函数}{11}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}局部极小沿直线保持}{11}{subsection.6.2}%
+\contentsline {paragraph}{引理 6.1}{11}{paragraph*.17}%
+\contentsline {paragraph}{证明}{11}{paragraph*.18}%
+\contentsline {subsection}{\numberline {6.3}沿直线的一阶导数与梯度}{11}{subsection.6.3}%
+\contentsline {paragraph}{引理 6.2}{11}{paragraph*.19}%
+\contentsline {paragraph}{证明}{11}{paragraph*.20}%
+\contentsline {subsection}{\numberline {6.4}Hessian 二次型的表示}{12}{subsection.6.4}%
+\contentsline {paragraph}{引理 6.3}{12}{paragraph*.21}%
+\contentsline {paragraph}{证明}{12}{paragraph*.22}%
+\contentsline {subsection}{\numberline {6.5}一元二阶必要条件}{12}{subsection.6.5}%
+\contentsline {paragraph}{引理 6.4（一元函数的二阶必要条件）}{12}{paragraph*.23}%
+\contentsline {paragraph}{证明}{12}{paragraph*.24}%
+\contentsline {section}{\numberline {7}主定理的形式化证明}{13}{section.7}%
+\contentsline {subsection}{\numberline {7.1}显式梯度场版本}{13}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}直接使用 \texttt {gradient f} 的版本}{14}{subsection.7.2}%
+\contentsline {section}{\numberline {8}与传统 Hessian 矩阵的关系}{14}{section.8}%
+\contentsline {section}{\numberline {9}结论}{14}{section.9}%
+\contentsline {section}{\numberline {A}Lean 完整代码}{16}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}根模块 \texttt {Hessian.lean}}{16}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}主形式化文件 \texttt {Hessian/Basic.lean}}{16}{subsection.A.2}%

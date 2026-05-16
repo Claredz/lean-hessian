@@ -1,0 +1,477 @@
+﻿\documentclass[UTF8,a4paper,zihao=-4]{ctexart}
+
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.8cm,bottom=2.8cm}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=blue!60!black}
+\setlist{leftmargin=2em}
+
+\lstdefinelanguage{Lean}{
+  morekeywords={def,noncomputable,theorem,lemma,by,intro,let,have,exact,fun,Prop},
+  sensitive=true,
+  morecomment=[l]{--},
+  morecomment=[s]{/-}{-/},
+  morestring=[b]"
+}
+
+\lstdefinestyle{leanstyle}{
+  language=Lean,
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{gray!8},
+  frame=single,
+  rulecolor=\color{gray!35},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  literate=
+    {ℝ}{{$\mathbb{R}$}}1
+    {ℕ}{{$\mathbb{N}$}}1
+    {→}{{$\to$}}1
+    {₀}{{$_0$}}1
+    {≤}{{$\le$}}1
+    {ᶠ}{{$^f$}}1
+    {𝓝}{{$\mathcal{N}$}}1
+    {φ}{{$\varphi$}}1
+    {ε}{{$\varepsilon$}}1
+    {₁}{{$_1$}}1
+    {⟨}{{$\langle$}}1
+    {⟩}{{$\rangle$}}1
+    {∃}{{$\exists$}}1
+    {∀}{{$\forall$}}1
+    {·}{{$\cdot$}}1
+}
+\lstset{style=leanstyle}
+
+\title{数学分析 II 中 Hessian 半正定二阶必要条件的 Lean 形式化}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{摘要}
+二阶必要条件是多元函数极值理论的基本结论之一：若光滑函数在局部极小点处的梯度为零，则其 Hessian 矩阵必为半正定。本文在 Lean 4 证明助手中，基于 mathlib 数学库，完成了该定理的完整形式化证明。由于 mathlib 的微分学框架建立在 Fréchet 导数与内积空间之上，本文将经典教材中“二阶偏导数矩阵”的表述等价地转化为“梯度映射的 Fréchet 导数”，并以线性算子的半正定性替代矩阵半正定性。证明采用直线限制法将多元问题化为一元函数的极值问题，并通过一元二阶必要条件和中值定理完成最终推导。文章详细给出了从数学定义到 Lean 代码的术语转换表，系统讨论了形式化过程中的核心设计决策，并展示了如何将传统证明模块化地分解为可独立验证的辅助引理。本文涉及的 Lean 文件在项目所使用的 Lean 4 与 mathlib 环境下通过编译，主证明未使用 \texttt{ry}、\texttt{admit} 或 \texttt{axiom}。
+
+\noindent 关键词：Lean 4；mathlib；Hessian 矩阵；二阶必要条件；形式化证明；数学分析 II
+
+\bigskip\hrule\bigskip
+
+\section{引言}
+在数学分析 II（多元微分学）课程中，函数极值的二阶必要条件是一个核心结论：设 \(f:\mathbb{R}^n\to\mathbb{R}\) 在点 \(x_0\) 处取得局部极小值，若 \(f\) 在 \(x_0\) 处二阶连续可微且梯度为零，则 Hessian 矩阵 \(\big(\frac{\partial^2 f}{\partial x_i\partial x_j}(x_0)\big)\) 必为半正定。该定理常用于优化理论及相关应用问题中，其标准证明通过方向导数和中值定理完成。
+
+随着交互式定理证明器的发展，将经典数学结论形式化已成为一项有意义的实践。Lean 4 是一款基于依赖类型论的证明助手，其社区维护的数学库 mathlib 提供了分析学、代数学等领域的丰富形式化基础。然而，mathlib 中的微分学采用 Fréchet 导数的泛函分析语言：函数在某点的导数被表示为连续线性映射，而梯度则是该线性映射在内积空间中的 Riesz 表示。因此，课堂中直接使用二阶偏导数矩阵的定义无法直接移植到 mathlib 中，必须将 Hessian 重新表述为梯度函数的导数。
+
+本文报告了利用 Lean 4 对 Hessian 半正定二阶必要条件进行形式化的全过程。我们给出了一个基于直线限制法和一元二阶必要条件的完整证明，严格遵循 mathlib 的分析 API，并提供了与传统矩阵形式的对应关系。本文给出的 Lean 代码均已在项目环境中通过编译。本文的目的在于展示如何将课堂上的数学分析证明适配至现代证明助手的规范框架之下。
+
+\section{数学背景与主定理}
+本节回顾经典数学分析 II 中的相关定义与定理，所有表述均采用 \(\mathbb{R}^n\) 上的多元微分学语言。
+
+设 \(f:\mathbb{R}^n\to\mathbb{R}\)，\(x_0\in\mathbb{R}^n\)。记向量空间的标准内积为 \(u\cdot v=u^T v\)，范数为 \(|u|=\sqrt{u\cdot u}\)。
+
+\paragraph{定义 2.1（局部极小点）}称 \(x_0\) 是 \(f\) 的一个局部极小点，若存在 \(\varepsilon>0\)，使得对所有满足 \(|y-x_0|<\varepsilon\) 的 \(y\)，均有 \(f(x_0)\le f(y)\)。
+
+\paragraph{定义 2.2（梯度）}若 \(f\) 在 \(x_0\) 处可微，则存在唯一向量 \(\nabla f(x_0)\in\mathbb{R}^n\)，使得对任意方向 \(v\in\mathbb{R}^n\)，方向导数
+\[
+\lim_{t\to0}\frac{f(x_0+tv)-f(x_0)}{t} = \nabla f(x_0)\cdot v .
+\]
+称 \(\nabla f(x_0)\) 为 \(f\) 在 \(x_0\) 处的梯度。
+
+\paragraph{定义 2.3（Hessian 矩阵）}若梯度函数 \(\nabla f:\mathbb{R}^n\to\mathbb{R}^n\) 在 \(x_0\) 处可微，则其 Jacobi 矩阵
+\[
+H_f(x_0) = D(\nabla f)(x_0) = \left(\frac{\partial^2 f}{\partial x_i\partial x_j}(x_0)\right)_{n\times n}
+\]
+称为 \(f\) 在 \(x_0\) 处的 Hessian 矩阵。
+
+\paragraph{定义 2.4（矩阵半正定）}称实对称矩阵 \(A\) 为半正定，若对任意 \(v\in\mathbb{R}^n\) 均有 \(v^T A v \ge 0\)。
+
+\paragraph{定理 2.1（Hessian 半正定的二阶必要条件）}设 \(f:\mathbb{R}^n\to\mathbb{R}\) 在 \(x_0\) 处取得局部极小值，且满足
+\begin{itemize}
+\item \(f\) 在 \(x_0\) 处可微，且 \(\nabla f(x_0)=0\)；
+\item \(f\) 在 \(x_0\) 的某邻域内可微（从而梯度在该邻域内存在）；
+\item 梯度函数 \(\nabla f(x)\) 在 \(x_0\) 处可微。
+\end{itemize}
+则 Hessian 矩阵 \(H_f(x_0)\) 是半正定的，即对一切 \(v\in\mathbb{R}^n\) 有 \(v^T H_f(x_0) v \ge 0\)。
+
+此定理的经典证明思路为：任取方向 \(v\)，考虑一元函数 \(\varphi(t)=f(x_0+tv)\)，由局部极小性知 \(t=0\) 是 \(\varphi\) 的局部极小点。利用链式法则得 \(\varphi'(t)=\nabla f(x_0+tv)\cdot v\)，故 \(\varphi'(0)=0\)。进一步，由 \(\nabla f\) 的可微性有 \(\varphi''(0)=v^T H_f(x_0)v\)。此时将一元函数的二阶必要条件应用于 \(\varphi\)，即得 \(\varphi''(0)\ge0\)。由 \(v\) 的任意性完成证明。这一思路也是本文 Lean 形式化的数学基础。
+
+\paragraph{完整数学证明}下面给出定理 2.1 的详细证明，完全在 \(\mathbb{R}^n\) 上完成。
+
+\paragraph{证明}任取 \(v\in\mathbb{R}^n\setminus\{0\}\)（\(v=0\) 时结论平凡成立）。构造一元辅助函数
+\[
+\varphi(t)=f(x_0+tv),\quad t\in\mathbb{R}.
+\]
+\paragraph{第一步：\(\varphi\) 在 \(t=0\) 处局部极小。}因 \(x_0\) 是 \(f\) 的局部极小点，存在 \(\varepsilon>0\) 使得当 \(|y-x_0|<\varepsilon\) 时 \(f(x_0)\le f(y)\)。取 \(\delta=\dfrac{\varepsilon}{|v|+1}>0\)，则当 \(|t|<\delta\) 时，
+\[
+|(x_0+tv)-x_0|=|t||v|<\delta(|v|+1)<\varepsilon,
+\]
+故 \(f(x_0)\le f(x_0+tv)\)，即 \(\varphi(0)\le\varphi(t)\)。因此 \(t=0\) 是 \(\varphi\) 的局部极小点。
+
+\paragraph{第二步：\(\varphi\) 在 \(t=0\) 附近可导且 \(\varphi'(0)=0\)。}由条件 2，\(f\) 在 \(x_0+tv\) 处可微对充分小的 \(t\) 成立。根据方向导数的链式法则，
+\[
+\varphi'(t)=\nabla f(x_0+tv)\cdot v,
+\]
+其中“\(\cdot\)”为 \(\mathbb{R}^n\) 中的标准点积。特别地，令 \(t=0\) 并利用条件 1 \(\nabla f(x_0)=0\)，得
+\[
+\varphi'(0)=\nabla f(x_0)\cdot v=0.
+\]
+\paragraph{第三步：\(\varphi'\) 在 \(t=0\) 处可导，且 \(\varphi''(0)=v^{\top} H_f(x_0) v\)。}令向量值函数 \(g(x)=\nabla f(x)\)，则 \(g:\mathbb{R}^n\to\mathbb{R}^n\) 在 \(x_0\) 处可微，其 Jacobi 矩阵为 \(H=H_f(x_0)\)。由可微性定义，
+\[
+g(x_0+tv)=g(x_0)+H(tv)+o(t)=g(x_0)+tHv+o(t),\quad t\to0.
+\]
+其中 \(o(t)\) 是 \(\mathbb{R}^n\) 中满足 \(\lim_{t\to0}\frac{|o(t)|}{|t|}=0\) 的向量。两边同时点乘 \(v\)，得到
+\[
+\varphi'(t)=g(x_0+tv)\cdot v=g(x_0)\cdot v+t(Hv)\cdot v+o(t).
+\]
+同时 \(\varphi'(0)=g(x_0)\cdot v\)。因此
+\[
+\frac{\varphi'(t)-\varphi'(0)}{t}=(Hv)\cdot v+\frac{o(t)}{t}.
+\]
+令 \(t\to0\)，得
+\[
+\varphi''(0)=(Hv)\cdot v=v^{\top}Hv.
+\]
+故 \(\varphi'\) 在 \(0\) 处可导，二阶导数值恰为 \(v^{\top}Hv\)。
+
+\paragraph{第四步：一元二阶必要条件推出 \(v^{\top}Hv\ge0\)。}此时一元函数 \(\varphi\) 满足：\(\varphi\) 在 \(t=0\) 处局部极小；\(\varphi\) 在 \(0\) 的某邻域内可导，且 \(\varphi'(0)=0\)；\(\varphi'\) 在 \(0\) 处可导，记 \(l=\varphi''(0)=v^{\top}Hv\)。下面证明 \(l\ge0\)。
+
+假设 \(l<0\)。由导数定义，
+\[
+\lim_{t\to0}\frac{\varphi'(t)}{t}=l<0.
+\]
+根据极限的保号性，存在 \(\delta_1>0\)，使得当 \(0<t<\delta_1\) 时 \(\frac{\varphi'(t)}{t}<0\)，从而 \(\varphi'(t)<0\)。取 \(b\) 满足 \(0<b<\min\{\delta_1,\varepsilon\}\)，其中 \(\varepsilon\) 为第一步中的极小邻域半径，则 \(\varphi\) 在 \([0,b]\) 上连续，在 \((0,b)\) 内可导。由 Lagrange 中值定理，存在 \(c\in(0,b)\) 使得
+\[
+\frac{\varphi(b)-\varphi(0)}{b-0}=\varphi'(c).
+\]
+因为 \(0<c<b<\delta_1\)，故 \(\varphi'(c)<0\)，于是 \(\varphi(b)-\varphi(0)<0\)，即 \(\varphi(b)<\varphi(0)\)。然而 \(0<b<\varepsilon\) 保证了 \(|b|<\varepsilon\)，由局部极小性应有 \(\varphi(0)\le\varphi(b)\)，矛盾。所以 \(l\ge0\)，即 \(v^{\top}Hv\ge0\)。
+
+\paragraph{第五步：方向任意性得到矩阵半正定。}上述推理对任意非零 \(v\in\mathbb{R}^n\) 成立，而当 \(v=0\) 时 \(v^{\top}Hv=0\ge0\)。因此
+\[
+\forall v\in\mathbb{R}^n,\quad v^{\top}H_f(x_0)v\ge0,
+\]
+即 Hessian 矩阵 \(H_f(x_0)\) 半正定。证毕。
+
+\bigskip\hrule\bigskip
+
+\section{从数学表述到 Lean 表述}
+在 Lean 的 mathlib 库中，微分学并不直接采用 \(\mathbb{R}^n\) 上的 Jacobi 矩阵，而是以泛函分析语言统一处理赋范向量空间上的 Fréchet 导数。因此，课堂上的许多概念在形式化时需经过一次“翻译”。本节给出关键术语的对应关系，以帮助理解 Lean 代码。
+
+mathlib 中使用的空间类型为一般的实内积空间 \(E\)，满足 \texttt{NormedAddCommGroup E}、\texttt{InnerProductSpace ℝ E} 和 \texttt{CompleteSpace E}。在具体应用时可视为 \(\mathbb{R}^n\)。所有映射的导数均以连续线性映射（\texttt{E →L[ℝ] F}）表示。
+
+\begin{table}[htbp]
+\centering
+\caption{表 3.1 数学概念与 Lean 表达对照}
+\begin{tabularx}{\textwidth}{@{}p{0.42\textwidth}X@{}}
+\toprule
+数学分析概念 & Lean/mathlib 中的表达 \\
+\midrule
+函数 \(f:\mathbb{R}^n\to\mathbb{R}\) & \texttt{f : E → ℝ} \\
+点 \(x_0\) & \texttt{x₀ : E} \\
+内积 \(u\cdot v\) & \texttt{inner ℝ u v} \\
+可微性与梯度 \(\nabla f(x)\) & \texttt{HasGradientAt f (g x) x} 或 \texttt{gradient f x} \\
+梯度向量场 \(x\mapsto \nabla f(x)\) & \texttt{fun x => gradient f x} \\
+Fréchet 导数（即 Jacobi 对应的线性映射） & \texttt{fderiv ℝ f x} \\
+Hessian 矩阵 \(H_f(x)\) & \texttt{fderiv ℝ (fun y => gradient f y) x}，类型 \texttt{E →L[ℝ] E} \\
+二次型 \(v^T H v\) & \texttt{inner ℝ (H v) v} \\
+算子半正定 \(\forall v,\ v^T H v\ge0\) & \texttt{∀ v, 0 ≤ inner ℝ (H v) v} \\
+局部极小点 & 自定义 \texttt{localMinimumAt f x₀} \\
+梯度为零 & \texttt{HasGradientAt f 0 x₀} \\
+梯度函数可微且导数为 \(A\) & \texttt{HasFDerivAt (fun x => gradient f x) A x₀} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+从表中可看出，核心改变在于将矩阵 \(H\) 视为作用于 \(v\) 的线性算子 \(A\)，并将 \(v^T H v\) 写成内积形式。这种表述实际上与数学分析中的思路一致：在 \(\mathbb{R}^n\) 上，线性算子的伴随矩阵乘以内积即得二次型。因此，形式化过程中的“泛函分析外衣”并未改变证明的本质，只是用一种更统一的语言重新描述了同样的对象。
+
+\section{核心定义与代码实现}
+本节给出 Lean 中与定理直接相关的几个核心定义，并解释其数学含义。
+
+\subsection{局部极小点}
+\begin{lstlisting}
+def localMinimumAt (f : E → ℝ) (x₀ : E) : Prop :=
+  ∃ ε > 0, ∀ y : E, dist y x₀ < ε → f x₀ ≤ f y
+\end{lstlisting}
+该定义直接对应定义 2.1，使用距离函数 \texttt{dist} 描述邻域。
+
+\subsection{Hessian 算子}
+\begin{lstlisting}
+noncomputable def hessianOp (f : E → ℝ) (x : E) : E →L[ℝ] E :=
+  fderiv ℝ (fun y => gradient f y) x
+\end{lstlisting}
+这一定义实现了“Hessian = 梯度映射的 Fréchet 导数”。这里使用 \texttt{noncomputable}，是因为 \texttt{fderiv} 和 \texttt{gradient} 在 mathlib 中通常作为非可计算对象定义。需要注意的是，在缺少可微性假设时，\texttt{fderiv} 与 \texttt{gradient} 仍有默认值；因此，主定理中还需要显式加入 \texttt{HasGradientAt} 与 \texttt{HasFDerivAt} 假设，以保证这些对象具有预期的数学含义。
+
+\subsection{算子的半正定性}
+\begin{lstlisting}
+def posSemidefOp (A : E →L[ℝ] E) : Prop :=
+  ∀ v : E, 0 ≤ inner ℝ (A v) v
+\end{lstlisting}
+对于任意连续线性算子 \(A\)，该定义断言其满足半正定条件，恰好对应 \(v^T A v \ge 0\)。
+
+\subsection{Hessian 半正定性}
+\begin{lstlisting}
+def hessianPosSemidefAt (f : E → ℝ) (x : E) : Prop :=
+  posSemidefOp (hessianOp f x)
+\end{lstlisting}
+该定义将 Hessian 算子与半正定性相结合，直接表达“\(f\) 在 \(x\) 处的 Hessian 半正定”这一命题。
+
+以上四个定义构成了整个形式化的概念骨架。接下来的所有辅助引理和主定理均在此基础上展开。
+
+\section{形式化设计与证明处理}
+将数学分析 II 中的经典定理移植到 Lean/mathlib 中，并非简单地将纸面证明逐行翻译。本节讨论形式化过程中遇到的四个核心设计问题：Hessian 的表述形式、梯度场的假设方式、一元引理的独立封装，以及证明结构的模块化分解。
+
+\subsection{为何采用 Hessian operator 而非 Hessian matrix}
+课堂中 Hessian 被定义为二阶偏导数构成的矩阵 \(H_f(x_0)=(\partial_{ij}f(x_0))_{n\times n}\)。在 mathlib 中，多元函数的导数以 Fréchet 导数（即连续线性映射）统一处理，并不直接依赖坐标或偏导数索引。
+
+若直接在 Lean 中定义矩阵版本的 Hessian，需要：
+\begin{itemize}
+\item 选定一组基并显式引入坐标函数；
+\item 为每个矩阵元素单独证明其等于对应的二阶偏导数；
+\item 处理矩阵乘法与二次型 \(v^T H v\) 的计算。
+\end{itemize}
+然而，本定理的核心结论仅涉及二次型 \(v^T H v\) 的非负性。因此，本文选择先证明 operator 版本：将 Hessian 定义为梯度映射的 Fréchet 导数，类型为 \texttt{E →L[ℝ] E}，半正定性通过内积表达为 \texttt{∀ v, 0 ≤ inner ℝ (A v) v}。这一路径具有以下优势：
+\begin{itemize}
+\item 与 mathlib API 自然对齐：\texttt{fderiv} 和 \texttt{gradient} 的现有定理可直接使用，无需额外建立矩阵层。
+\item 坐标无关：证明不依赖具体坐标选取；在本文语境下，可将其理解为 \(\mathbb{R}^n\) 上 Hessian 矩阵对应的线性算子。
+\item 矩阵表示可后恢复：在需要时，通过 \texttt{hessianMatrixOfOp} 可在标准基下恢复传统 Hessian 矩阵（见第 8 节）。在有限维标准基下，算子半正定性与通常的矩阵二次型非负性在数学上对应；本文给出了矩阵表示接口，严格等价的 Lean 证明留作后续工作。
+\end{itemize}
+这一设计通过保持坐标无关性，既简化了证明，又保留了与传统表述的连接。
+
+\subsection{为何提供两个主定理版本}
+纸面证明中通常直接使用 \(\nabla f\) 作为梯度场。在 mathlib 中，\texttt{gradient f x} 是一个全局定义的函数；即使缺少可微性假设，该表达式也有值。因此，在将其解释为真实梯度时，需要额外提供 \texttt{HasGradientAt} 或邻域内可微性条件。
+
+若不加可微性假设而直接使用 \texttt{fun x => gradient f x} 作为梯度场，则在该函数不可微的点上，\texttt{gradient} 的值不能直接解释为数学意义上了的梯度。为此，本文提供了两个版本的主定理：
+
+\paragraph{版本一（显式梯度场版本）}假设存在一个向量场 \texttt{g : E → E}，在 \(x_0\) 的邻域上 \texttt{g x} 精确等于 \texttt{f} 在 \texttt{x} 处的梯度，且 \texttt{g} 在 \(x_0\) 处的 Fréchet 导数为 \texttt{A}。
+\begin{lstlisting}
+theorem second_order_necessary_condition_gradient_field
+    {f : E → ℝ} {g : E → E} {x₀ : E} {A : E →L[ℝ] E}
+    (hmin : localMinimumAt f x₀)
+    (hgrad_near : ∀ᶠ x in 𝓝 x₀, HasGradientAt f (g x) x)
+    (hgrad_zero : g x₀ = 0)
+    (hHess : HasFDerivAt g A x₀) :
+    posSemidefOp A := ...
+\end{lstlisting}
+此版本不依赖 \texttt{gradient} 的全局默认值，所有梯度信息均由假设显式提供，是本文的主形式化版本。
+
+\paragraph{版本二（直接 gradient 版本）}直接使用 mathlib 内置的 \texttt{gradient f}，并附加 \texttt{f} 在邻域内可微的条件。
+\begin{lstlisting}
+theorem second_order_necessary_condition_gradient
+    {f : E → ℝ} {x₀ : E} {A : E →L[ℝ] E}
+    (hmin : localMinimumAt f x₀)
+    (hgrad : HasGradientAt f (0 : E) x₀)
+    (hdiff_near : ∀ᶠ x in 𝓝 x₀, DifferentiableAt ℝ f x)
+    (hHess : HasFDerivAt (fun x => gradient f x) A x₀) :
+    posSemidefOp A := ...
+\end{lstlisting}
+此版本更贴近课堂表述，但证明是通过实例化版本一完成的：在 \texttt{hdiff\_near} 保证的邻域上，\texttt{gradient f} 恰好充当 \texttt{g} 的角色。这种多版本设计既保证了逻辑严谨性，又保留了与原始数学表述的直观联系。
+
+\subsection{为何独立封装一元二阶必要条件}
+在纸面证明中，“一元函数在局部极小点处的二阶导数非负”常被直接引用为已知事实。但在形式化时，需要精确匹配 mathlib 中已有的分析 API。
+
+mathlib 中已有若干一元函数极值相关定理，例如 \texttt{deriv\_nonneg\_of\_localMin}；但其假设形式与本文使用的局部导数字段形式并不完全一致。本文中的一元函数 \(\varphi\) 的导数通过梯度与方向向量的内积给出，可导性以 \texttt{∀ᶠ t in 𝓝 0, HasDerivAt φ (φ' t) t}（即在 0 的邻域内导数为 \(\varphi'(t)\)）的形式出现。这种使用 \texttt{Filter} 语言描述“局部成立”的方式是 mathlib 分析学中的标准做法，但也意味着不能直接套用某一条现成定理。
+
+因此，本文将一元二阶必要条件独立封装为引理 \texttt{oneDim\_secondOrderNecessary}：
+\begin{lstlisting}
+lemma oneDim_secondOrderNecessary
+    {φ φ' : ℝ → ℝ} {l : ℝ}
+    (hmin : localMinimumAt φ 0)
+    (hderiv : HasDerivAt φ 0 0)
+    (hderiv' : HasDerivAt φ' l 0)
+    (hφ' : ∀ᶠ t in 𝓝 (0 : ℝ), HasDerivAt φ (φ' t) t) :
+    0 ≤ l := ...
+\end{lstlisting}
+该引理将一元部分的所有细节封装在一个模块内，使多元主定理只需调用它即可完成证明。形式化的主要困难在于将“充分小的正 \(t\)”翻译成 \texttt{𝓝[>] 0} 等邻域语言，并在 Lean 中处理导数符号与中值定理的组合。这种将纸面证明中隐式使用的步骤显式化为独立引理的策略，是形式化复杂分析证明时的常用方法。
+
+\subsection{证明结构的模块化分解}
+下表总结了数学证明中的每一步与对应 Lean 引理的关系，体现了形式化过程中的模块化分解策略。
+
+\begin{table}[htbp]
+\centering
+\caption{表 5.1 数学证明步骤与 Lean 引理对应}
+\begin{tabularx}{\textwidth}{@{}p{0.56\textwidth}X@{}}
+\toprule
+数学证明步骤 & Lean 引理 \\
+\midrule
+直线 \(t \mapsto x_0 + t v\) 的导数为 \(v\) & \texttt{hasDerivAt\_line} \\
+局部极小沿直线保持 & \texttt{localMinimumAt\_comp\_line} \\
+沿直线的一阶导数由梯度与方向的内积给出 & \texttt{hasDerivAt\_comp\_line\_of\_hasGradientAt} \\
+梯度场的导数给出 Hessian 二次型 & \texttt{hasDerivAt\_inner\_gradientField\_line} \\
+一元二阶必要条件 & \texttt{oneDim\_secondOrderNecessary} \\
+多元主定理 & \texttt{second\_order\_necessary\_condition\_gradient\_field} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+这种模块化分解使每个引理专注于单一数学事实，便于独立验证和复用。主定理的证明骨架清晰地反映了数学推理的逻辑流程：任取方向 \(v\)，构造一元函数 \(\varphi\)，依次调用上述引理，最终归约到一元二阶必要条件。
+
+\section{辅助引理与证明结构}
+本节介绍证明主定理所需的关键引理，每个引理均先以数学语言表述，再给出对应的 Lean 陈述，并补充 \(\mathbb{R}^n\) 上的详细证明。
+
+\subsection{直线限制函数}
+对固定的 \(x_0, v\in\mathbb{R}^n\)，定义一元函数 \(\varphi(t) = f(x_0+tv)\)。在 Lean 中直接使用 lambda 表达式即可构造该函数，无需单独定义。
+
+\subsection{局部极小沿直线保持}
+\paragraph{引理 6.1}设 \(x_0\) 是 \(f:\mathbb{R}^n\to\mathbb{R}\) 的局部极小点，则对任意 \(v\in\mathbb{R}^n\)，一元函数 \(\varphi(t)=f(x_0+tv)\) 在 \(t=0\) 处也是局部极小。
+
+\paragraph{证明}由局部极小性，存在 \(\varepsilon>0\) 使得当 \(|y-x_0|<\varepsilon\) 时 \(f(x_0)\le f(y)\)。令 \(\delta=\dfrac{\varepsilon}{|v|+1}>0\)。当 \(|t|<\delta\) 时，
+\[
+|(x_0+tv)-x_0| = |t||v| < \delta(|v|+1) = \varepsilon.
+\]
+因此 \(f(x_0)\le f(x_0+tv)\)，即 \(\varphi(0)\le\varphi(t)\)，说明 \(t=0\) 是 \(\varphi\) 的局部极小点。证毕。
+
+Lean 语句：
+\begin{lstlisting}
+lemma localMinimumAt_comp_line {f : E → ℝ} {x₀ : E}
+    (hmin : localMinimumAt f x₀) (v : E) :
+    localMinimumAt (fun t : ℝ => f (x₀ + t • v)) 0 := ...
+\end{lstlisting}
+
+\subsection{沿直线的一阶导数与梯度}
+\paragraph{引理 6.2}设 \(f\) 在点 \(x_0+tv\) 处可微，则
+\[
+\varphi'(t)=\nabla f(x_0+tv)\cdot v.
+\]
+\paragraph{证明}由可微性及方向导数公式，对于实变量函数 \(\varphi(t)=f(x_0+tv)\)，有
+\[
+\varphi'(t) = \lim_{h\to0}\frac{f(x_0+tv+hv)-f(x_0+tv)}{h}
+= \nabla f(x_0+tv)\cdot v.
+\]
+该式即为多元函数沿方向 \(v\) 的方向导数，因可微性存在且等于梯度与方向的点积。证毕。
+
+Lean 语句：
+\begin{lstlisting}
+lemma hasDerivAt_comp_line_of_hasGradientAt
+    {f : E → ℝ} {g : E → E} {x₀ v : E} {t : ℝ}
+    (hgrad : HasGradientAt f (g (x₀ + t • v)) (x₀ + t • v)) :
+    HasDerivAt (fun s : ℝ => f (x₀ + s • v))
+      (inner ℝ (g (x₀ + t • v)) v) t := ...
+\end{lstlisting}
+
+\subsection{Hessian 二次型的表示}
+\paragraph{引理 6.3}设梯度函数 \(g(x)=\nabla f(x)\) 在 \(x_0\) 处可微，Jacobi 矩阵为 \(H=H_f(x_0)\)。定义 \(\psi(t)=g(x_0+tv)\cdot v\)，则 \(\psi\) 在 \(0\) 处可导且
+\[
+\psi'(0)=v^{\top}Hv.
+\]
+\paragraph{证明}由 \(g\) 在 \(x_0\) 处的可微性，有
+\[
+g(x_0+tv)=g(x_0)+H(tv)+o(t)=g(x_0)+tHv+o(t).
+\]
+两边与 \(v\) 作内积，得到
+\[
+\psi(t)=g(x_0)\cdot v+t(Hv)\cdot v+o(t).
+\]
+同时，\(\psi(0)=g(x_0)\cdot v\)。因此
+\[
+\frac{\psi(t)-\psi(0)}{t}=(Hv)\cdot v+\frac{o(t)}{t}.
+\]
+令 \(t\to0\)，得
+\[
+\psi'(0)=(Hv)\cdot v=v^{\top}Hv.
+\]
+证毕。
+
+Lean 语句：
+\begin{lstlisting}
+lemma hasDerivAt_inner_gradientField_line
+    {g : E → E} {x₀ v : E} {A : E →L[ℝ] E}
+    (hHess : HasFDerivAt g A x₀) :
+    HasDerivAt (fun t : ℝ => inner ℝ (g (x₀ + t • v)) v)
+      (inner ℝ (A v) v) 0 := ...
+\end{lstlisting}
+
+\subsection{一元二阶必要条件}
+\paragraph{引理 6.4（一元函数的二阶必要条件）}设 \(\varphi:\mathbb{R}\to\mathbb{R}\) 在 \(0\) 处局部极小，存在 \(\eta>0\) 使得 \(\varphi\) 在 \((-\eta,\eta)\) 内可导，导数记作 \(\varphi'(t)\)。若 \(\varphi'(0)=0\) 且 \(\varphi'\) 在 \(0\) 处可导，则 \(\varphi''(0)\ge 0\)。
+
+\paragraph{证明}记 \(l=\varphi''(0)=\lim_{t\to0}\frac{\varphi'(t)-\varphi'(0)}{t}=\lim_{t\to0}\frac{\varphi'(t)}{t}\)。假设 \(l<0\)，由极限的局部保号性，存在 \(\delta_1>0\)（可取 \(\delta_1<\eta\)），使得当 \(0<t<\delta_1\) 时 \(\frac{\varphi'(t)}{t}<0\)，故 \(\varphi'(t)<0\)。由 \(\varphi\) 在 \(0\) 处局部极小，存在 \(\varepsilon>0\)，当 \(|t|<\varepsilon\) 时 \(\varphi(0)\le\varphi(t)\)。
+
+取 \(b\) 满足 \(0<b<\min\{\delta_1,\varepsilon\}\)，则 \(\varphi\) 在 \([0,b]\) 上连续，在 \((0,b)\) 内可导。根据 Lagrange 中值定理，存在 \(c\in(0,b)\) 使得
+\[
+\frac{\varphi(b)-\varphi(0)}{b} = \varphi'(c) < 0.
+\]
+由此推出 \(\varphi(b)<\varphi(0)\)，与 \(|b|<\varepsilon\) 时的局部极小性矛盾。因此 \(l\ge 0\)。证毕。
+
+Lean 语句：
+\begin{lstlisting}
+lemma oneDim_secondOrderNecessary
+    {φ φ' : ℝ → ℝ} {l : ℝ}
+    (hmin : localMinimumAt φ 0)
+    (hderiv : HasDerivAt φ 0 0)
+    (hderiv' : HasDerivAt φ' l 0)
+    (hφ' : ∀ᶠ t in 𝓝 (0 : ℝ), HasDerivAt φ (φ' t) t) :
+    0 ≤ l := ...
+\end{lstlisting}
+通过以上五个引理，我们已将所有必要的分析成分拆解为便于形式化的模块。主定理的证明只需将这些模块按逻辑顺序组合即可。
+
+\section{主定理的形式化证明}
+本节给出两个版本的定理陈述，它们对应相同的数学内容，只是在梯度场的处理方式上略有差异。
+
+\subsection{显式梯度场版本}
+下面给出省略部分技术细节后的 Lean 证明骨架：
+\begin{lstlisting}
+theorem second_order_necessary_condition_gradient_field
+    {f : E → ℝ} {g : E → E} {x₀ : E} {A : E →L[ℝ] E}
+    (hmin : localMinimumAt f x₀)
+    (hgrad_near : ∀ᶠ x in 𝓝 x₀, HasGradientAt f (g x) x)
+    (hgrad_zero : g x₀ = 0)
+    (hHess : HasFDerivAt g A x₀) :
+    posSemidefOp A := by
+  intro v
+  let φ := fun t : ℝ => f (x₀ + t • v)
+  let φ' := fun t : ℝ => inner ℝ (g (x₀ + t • v)) v
+  have hmin_line : localMinimumAt φ 0 :=
+    localMinimumAt_comp_line hmin v
+  have hφ' : ∀ᶠ t in 𝓝 (0 : ℝ), HasDerivAt φ (φ' t) t := ...
+  have hderivφ : HasDerivAt φ 0 0 := ...
+  have hderivφ' : HasDerivAt φ' (inner ℝ (A v) v) 0 := ...
+  exact oneDim_secondOrderNecessary hmin_line hderivφ hderivφ' hφ'
+\end{lstlisting}
+该版本是本文的主形式化版本，所有梯度信息均由假设显式提供，避免了对 \texttt{gradient} 默认值的依赖。
+
+\subsection{直接使用 \texttt{gradient f} 的版本}
+\begin{lstlisting}
+theorem second_order_necessary_condition_gradient
+    {f : E → ℝ} {x₀ : E} {A : E →L[ℝ] E}
+    (hmin : localMinimumAt f x₀)
+    (hgrad : HasGradientAt f (0 : E) x₀)
+    (hdiff_near : ∀ᶠ x in 𝓝 x₀, DifferentiableAt ℝ f x)
+    (hHess : HasFDerivAt (fun x => gradient f x) A x₀) :
+    posSemidefOp A := ...
+\end{lstlisting}
+此版本更贴近课堂表述，证明通过实例化版本一完成：在 \texttt{hdiff\_near} 保证的邻域上，\texttt{gradient f} 充当了 \texttt{g} 的角色。
+
+两个定理的证明结构完全遵循第 2 节所述的直线限制法：给定任意方向 \(v\)，构造一元函数 \(\varphi\)，利用引理 6.1–6.4 依次推得 \(\langle A v, v\rangle \ge 0\)。Lean 代码中的 \texttt{intro v} 即对应“任取方向”，而最终调用的 \texttt{oneDim\_secondOrderNecessary} 则对应应用一元二阶必要条件。
+
+\section{与传统 Hessian 矩阵的关系}
+本形式化中证明的 Hessian 算子是定义在实内积空间上的连续线性映射，并不显式涉及偏导数或矩阵元素。但在有限维情形下，可以建立与传统 Hessian 矩阵的联系。我们以 \(n\) 维欧氏空间 \texttt{Euc n := EuclideanSpace ℝ (Fin n)} 为例，定义标准基下算子的矩阵表示：
+\begin{lstlisting}
+noncomputable def hessianMatrixOfOp {n : ℕ} (A : Euc n →L[ℝ] Euc n) :
+    Matrix (Fin n) (Fin n) ℝ :=
+  fun i j => inner ℝ (EuclideanSpace.single i 1) (A (EuclideanSpace.single j 1))
+\end{lstlisting}
+此处 \texttt{EuclideanSpace.single i 1} 是第 \(i\) 个标准基向量。该矩阵的第 \((i,j)\) 元正是 \(e_i \cdot (A e_j)\)。若取 \(A = \operatorname{hessianOp} f x\)，则 \texttt{hessianMatrixOfOp A} 可视为 Hessian operator 在标准基下的矩阵表示。从数学上看，标准正交基下的算子二次型 \(\langle Av,v\rangle\) 与对应矩阵二次型 \(v^{\top}Hv\) 一致。
+
+\section{结论}
+本文利用 Lean 4 与 mathlib 数学库，完整形式化了数学分析 II 中 Hessian 半正定的二阶必要条件。我们展示了如何在 Fréchet 导数框架下重构基于偏导数的经典定理，并通过直线限制法和一元二阶必要条件给出了严格的机器检查证明。在形式化过程中，我们提供了数学概念与 Lean 代码之间的详细术语对照，系统讨论了 Hessian operator 的选择、两个主定理版本的设计、一元引理的独立封装以及证明的模块化分解等关键形式化决策。本项目表明，Lean/mathlib 能够支持此类本科分析学命题的形式化；但实际证明仍需要对库中的导数、梯度、邻域和中值定理接口进行细致处理。
+
+\section*{参考文献}
+[1] 华东师范大学数学科学学院. 数学分析（下册）. 高等教育出版社, 2019.
+
+[2] J. Avigad, L. de Moura, S. Kong, et al. \\textit{Theorem Proving in Lean 4}. \url{https://leanprover.github.io/theorem_proving_in_lean4/}, 2024.
+
+[3] The mathlib Community. mathlib4: Lean 4 Mathematical Library. \url{https://github.com/leanprover-community/mathlib4}, 2024.
+
+[4] The mathlib Community. Mathlib4 Documentation. \url{https://leanprover-community.github.io/mathlib4_docs/}, 2024.
+
+[5] L. de Moura, S. Ullrich. The Lean 4 Theorem Prover and Programming Language. In: Proceedings of the 28th International Conference on Automated Deduction (CADE 28), LNCS 12699, pp. 625–635, 2021.
+
+\bigskip\hrule\bigskip
+
+\end{document}
+

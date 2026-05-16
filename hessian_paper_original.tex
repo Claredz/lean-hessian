@@ -8,6 +8,7 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{caption}
 
 \geometry{left=2.5cm,right=2.5cm,top=2.8cm,bottom=2.8cm}
 \hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=blue!60!black}
@@ -165,9 +166,8 @@ g(x_0+tv)=g(x_0)+H(tv)+o(t)=g(x_0)+tHv+o(t),\quad t\to0.
 
 mathlib 中使用的空间类型为一般的实内积空间 \(E\)，满足 \texttt{NormedAddCommGroup E}、\texttt{InnerProductSpace ℝ E} 和 \texttt{CompleteSpace E}。在具体应用时可视为 \(\mathbb{R}^n\)。所有映射的导数均以连续线性映射（\texttt{E →L[ℝ] F}）表示。
 
-\begin{table}[htbp]
-\centering
-\caption{表 3.1 数学概念与 Lean 表达对照}
+\begin{center}
+\captionof{table}{表 3.1 数学概念与 Lean 表达对照}
 \begin{tabularx}{\textwidth}{@{}p{0.42\textwidth}X@{}}
 \toprule
 数学分析概念 & Lean/mathlib 中的表达 \\
@@ -186,7 +186,7 @@ Hessian 矩阵 \(H_f(x)\) & \texttt{fderiv ℝ (fun y => gradient f y) x}，类�
 梯度函数可微且导数为 \(A\) & \texttt{HasFDerivAt (fun x => gradient f x) A x₀} \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{center}
 
 从表中可看出，核心改变在于将矩阵 \(H\) 视为作用于 \(v\) 的线性算子 \(A\)，并将 \(v^T H v\) 写成内积形式。这种表述实际上与数学分析中的思路一致：在 \(\mathbb{R}^n\) 上，线性算子的伴随矩阵乘以内积即得二次型。因此，形式化过程中的“泛函分析外衣”并未改变证明的本质，只是用一种更统一的语言重新描述了同样的对象。
 
@@ -292,9 +292,8 @@ lemma oneDim_secondOrderNecessary
 \subsection{证明结构的模块化分解}
 下表总结了数学证明中的每一步与对应 Lean 引理的关系，体现了形式化过程中的模块化分解策略。
 
-\begin{table}[htbp]
-\centering
-\caption{表 5.1 数学证明步骤与 Lean 引理对应}
+\begin{center}
+\captionof{table}{表 5.1 数学证明步骤与 Lean 引理对应}
 \begin{tabularx}{\textwidth}{@{}p{0.56\textwidth}X@{}}
 \toprule
 数学证明步骤 & Lean 引理 \\
@@ -307,7 +306,7 @@ lemma oneDim_secondOrderNecessary
 多元主定理 & \texttt{second\_order\_necessary\_condition\_gradient\_field} \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{center}
 
 这种模块化分解使每个引理专注于单一数学事实，便于独立验证和复用。主定理的证明骨架清晰地反映了数学推理的逻辑流程：任取方向 \(v\)，构造一元函数 \(\varphi\)，依次调用上述引理，最终归约到一元二阶必要条件。
 

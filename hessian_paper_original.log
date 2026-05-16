@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.28)  16 MAY 2026 02:00
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.28)  16 MAY 2026 12:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -812,31 +812,51 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \enit@count@id=\count354
 \enitdp@description=\count355
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 13.
+(d:/texlive/2025/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(d:/texlive/2025/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen284
+\captionmargin=\dimen285
+\caption@leftmargin=\dimen286
+\caption@rightmargin=\dimen287
+\caption@width=\dimen288
+\caption@indent=\dimen289
+\caption@parindent=\dimen290
+\caption@hangindent=\dimen291
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count356
+\c@continuedfloat=\count357
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 14.
 
 (./hessian_paper_original.aux)
 \openout1 = `hessian_paper_original.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 Package fontspec Info: 
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
@@ -844,56 +864,56 @@ Package fontspec Info:
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 57.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 57.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 57.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 57.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 57.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 57.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 57.
-LaTeX Font Info:    Redeclaring math accent \check on input line 57.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 57.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 57.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 57.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 57.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 58.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 58.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 58.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 58.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 58.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 58.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 58.
+LaTeX Font Info:    Redeclaring math accent \check on input line 58.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 58.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 58.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 58.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 58.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 57.
+(Font)              `operators' in the math version `normal' on input line 58.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 57.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 58.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 57.
+(Font)              `operators' in the math version `bold' on input line 58.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 57.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 58.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 57.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 57.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 57.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 57.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 57.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 58.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 57.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 57.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 57.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 57.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 58.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -929,19 +949,21 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count356
-Package hyperref Info: Link coloring ON on input line 57.
+\c@lstlisting=\count358
+Package hyperref Info: Link coloring ON on input line 58.
 (./hessian_paper_original.out) (./hessian_paper_original.out)
 \@outlinefile=\write3
 \openout3 = `hessian_paper_original.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 60.
 
 
 (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 60.
 
 
 (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -982,12 +1004,17 @@ Package fontspec Info:
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <12.045> not availab
 le
 (Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 
-104.
+105.
 [2]
 
 [3]
 Missing character: There is no ℝ (U+211D) in font [lmmono12-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono12-regular]:!
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 170.
+See the caption package documentation for explanation.
+
 Missing character: There is no ℝ (U+211D) in font [lmmono12-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono12-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono12-regular]:!
@@ -1045,13 +1072,13 @@ Missing character: There is no ≤ (U+2264) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
+
+
+[5]
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ∀ (U+2200) in font [lmmono10-regular]:!
 Missing character: There is no ≤ (U+2264) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
-
-
-[5]
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono12-regular]:!
 Missing character: There is no ∀ (U+2200) in font [lmmono12-regular]:!
@@ -1070,6 +1097,9 @@ Missing character: There is no 𝓝 (U+1D4DD) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+
+
+[7]
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
@@ -1081,9 +1111,6 @@ Missing character: There is no 𝓝 (U+1D4DD) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-
-
-[7]
 Missing character: There is no ∀ (U+2200) in font [lmmono12-regular]:!
 Missing character: There is no ᶠ (U+1DA0) in font [lmmono12-regular]:!
 Missing character: There is no 𝓝 (U+1D4DD) in font [lmmono12-regular]:!
@@ -1107,50 +1134,55 @@ Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 Missing character: There is no ≤ (U+2264) in font [lmmono10-regular]:!
 Missing character: There is no 𝓝 (U+1D4DD) in font [lmmono12-regular]:!
 
-Overfull \hbox (41.20891pt too wide) in paragraph at lines 309--309
+
+[8]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 296.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (41.20891pt too wide) in paragraph at lines 308--308
 []|\TU/lmtt/m/n/12.045 hasDerivAt_comp_line_of_hasGradientAt| 
  []
 
 
-Overfull \hbox (28.80255pt too wide) in paragraph at lines 309--309
+Overfull \hbox (28.80255pt too wide) in paragraph at lines 308--308
 []|\TU/lmtt/m/n/12.045 hasDerivAt_inner_gradientField_line| 
  []
 
 
-Overfull \hbox (103.24063pt too wide) in paragraph at lines 309--309
+Overfull \hbox (103.24063pt too wide) in paragraph at lines 308--308
 []|\TU/lmtt/m/n/12.045 second_order_necessary_condition_gradient_field| 
  []
 
-
-
-[8]
-Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 
 
 [9]
-Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
-Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 
 
 [10]
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
+Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
@@ -1167,6 +1199,9 @@ Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 Missing character: There is no ≤ (U+2264) in font [lmmono10-regular]:!
+
+
+[11]
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
@@ -1177,9 +1212,6 @@ Missing character: There is no 𝓝 (U+1D4DD) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-
-
-[11]
 Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
@@ -1204,7 +1236,7 @@ Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 Missing character: There is no φ (U+03C6) in font [lmmono10-regular]:!
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <15.05624> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 437.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 436.
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
@@ -1216,6 +1248,9 @@ Missing character: There is no 𝓝 (U+1D4DD) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+
+
+[12]
 Missing character: There is no ℝ (U+211D) in font [lmmono12-regular]:!
 Missing character: There is no ℕ (U+2115) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
@@ -1223,15 +1258,15 @@ Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 Missing character: There is no ℝ (U+211D) in font [lmmono10-regular]:!
 
 
-[12]
-Overfull \hbox (34.22517pt too wide) in paragraph at lines 470--471
+[13]
+Overfull \hbox (34.22517pt too wide) in paragraph at lines 469--470
 []\TU/lmr/m/n/12.045 [4] The mathlib Community. Mathlib4 Documentation. [][]$[]
 [][][][] [] [] [] [][][][][][][][][][][][][][][][][][][][][] []
  []
 
 
 
-[13] (./hessian_paper_original.aux)
+[14] (./hessian_paper_original.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2022/08/05>
@@ -1241,12 +1276,12 @@ Package rerunfilecheck Info: File `hessian_paper_original.out' has not changed.
 (rerunfilecheck)             Checksum: 926A74593F1414A6AA45130B6773A422;3146.
  ) 
 Here is how much of TeX's memory you used:
- 18017 strings out of 468389
- 383465 string characters out of 5444297
- 1056961 words of memory out of 5000000
- 46272 multiletter control sequences out of 15000+600000
+ 19326 strings out of 468389
+ 408816 string characters out of 5444297
+ 1103937 words of memory out of 5000000
+ 47575 multiletter control sequences out of 15000+600000
  637754 words of font info for 110 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,12n,111p,536b,1815s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,10n,111p,536b,1819s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on hessian_paper_original.pdf (13 pages).
+Output written on hessian_paper_original.pdf (14 pages).

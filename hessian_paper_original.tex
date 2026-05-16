@@ -1,11 +1,17 @@
 ﻿\documentclass[UTF8,a4paper,zihao=-4]{ctexart}
 
+\usepackage{iftex}
+\ifPDFTeX
+  \PackageError{hessian-paper}{请使用 XeLaTeX 编译本文档}{推荐命令：xelatex -shell-escape hessian_paper_original.tex}
+\fi
+\usepackage{fontspec}
+\usepackage{xeCJK}
 \usepackage{amsmath,amssymb}
 \usepackage{geometry}
 \usepackage{booktabs}
 \usepackage{tabularx}
-\usepackage{listings}
 \usepackage{xcolor}
+\usepackage{minted}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{caption}
@@ -14,42 +20,40 @@
 \hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=blue!60!black}
 \setlist{leftmargin=2em}
 
-\lstdefinelanguage{Lean}{
-  morekeywords={def,noncomputable,theorem,lemma,by,intro,let,have,exact,fun,Prop},
-  sensitive=true,
-  morecomment=[l]{--},
-  morecomment=[s]{/-}{-/},
-  morestring=[b]"
+\IfFontExistsTF{JuliaMono}{
+  \setmonofont{JuliaMono}[Scale=MatchLowercase]
+}{
+  % TODO: 未安装 JuliaMono 时使用 DejaVu Sans Mono 回退；建议安装 JuliaMono 以获得最佳 Lean Unicode 渲染。
+  \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 }
 
-\lstdefinestyle{leanstyle}{
-  language=Lean,
-  basicstyle=\ttfamily\small,
-  backgroundcolor=\color{gray!8},
-  frame=single,
-  rulecolor=\color{gray!35},
-  breaklines=true,
-  columns=fullflexible,
-  keepspaces=true,
-  showstringspaces=false,
-  literate=
-    {ℝ}{{$\mathbb{R}$}}1
-    {ℕ}{{$\mathbb{N}$}}1
-    {→}{{$\to$}}1
-    {₀}{{$_0$}}1
-    {≤}{{$\le$}}1
-    {ᶠ}{{$^f$}}1
-    {𝓝}{{$\mathcal{N}$}}1
-    {φ}{{$\varphi$}}1
-    {ε}{{$\varepsilon$}}1
-    {₁}{{$_1$}}1
-    {⟨}{{$\langle$}}1
-    {⟩}{{$\rangle$}}1
-    {∃}{{$\exists$}}1
-    {∀}{{$\forall$}}1
-    {·}{{$\cdot$}}1
+% TODO: 当前环境未检测到 Noto Serif CJK SC；安装后将自动优先用于中文正文。
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{
+  \setCJKmainfont{Microsoft YaHei}
 }
-\lstset{style=leanstyle}
+
+% TODO: 当前环境未检测到 Noto Sans Mono CJK SC；安装后将自动优先用于中文等宽文本。
+\IfFontExistsTF{Noto Sans Mono CJK SC}{
+  \setCJKmonofont{Noto Sans Mono CJK SC}
+}{
+  \setCJKmonofont{Microsoft YaHei}
+}
+
+\definecolor{leanbg}{RGB}{248,248,248}
+\setminted[lean4]{
+  fontsize=\small,
+  fontfamily=tt,
+  breaklines=true,
+  breakanywhere=true,
+  autogobble=true,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=gray!35,
+  bgcolor=leanbg,
+  tabsize=2
+}
 
 \title{数学分析 II 中 Hessian 半正定二阶必要条件的 Lean 形式化}
 \author{}
@@ -194,31 +198,31 @@ Hessian 矩阵 \(H_f(x)\) & \texttt{fderiv ℝ (fun y => gradient f y) x}，类�
 本节给出 Lean 中与定理直接相关的几个核心定义，并解释其数学含义。
 
 \subsection{局部极小点}
-\begin{lstlisting}
+\begin{minted}{lean4}
 def localMinimumAt (f : E → ℝ) (x₀ : E) : Prop :=
   ∃ ε > 0, ∀ y : E, dist y x₀ < ε → f x₀ ≤ f y
-\end{lstlisting}
+\end{minted}
 该定义直接对应定义 2.1，使用距离函数 \texttt{dist} 描述邻域。
 
 \subsection{Hessian 算子}
-\begin{lstlisting}
+\begin{minted}{lean4}
 noncomputable def hessianOp (f : E → ℝ) (x : E) : E →L[ℝ] E :=
   fderiv ℝ (fun y => gradient f y) x
-\end{lstlisting}
+\end{minted}
 这一定义实现了“Hessian = 梯度映射的 Fréchet 导数”。这里使用 \texttt{noncomputable}，是因为 \texttt{fderiv} 和 \texttt{gradient} 在 mathlib 中通常作为非可计算对象定义。需要注意的是，在缺少可微性假设时，\texttt{fderiv} 与 \texttt{gradient} 仍有默认值；因此，主定理中还需要显式加入 \texttt{HasGradientAt} 与 \texttt{HasFDerivAt} 假设，以保证这些对象具有预期的数学含义。
 
 \subsection{算子的半正定性}
-\begin{lstlisting}
+\begin{minted}{lean4}
 def posSemidefOp (A : E →L[ℝ] E) : Prop :=
   ∀ v : E, 0 ≤ inner ℝ (A v) v
-\end{lstlisting}
+\end{minted}
 对于任意连续线性算子 \(A\)，该定义断言其满足半正定条件，恰好对应 \(v^T A v \ge 0\)。
 
 \subsection{Hessian 半正定性}
-\begin{lstlisting}
+\begin{minted}{lean4}
 def hessianPosSemidefAt (f : E → ℝ) (x : E) : Prop :=
   posSemidefOp (hessianOp f x)
-\end{lstlisting}
+\end{minted}
 该定义将 Hessian 算子与半正定性相结合，直接表达“\(f\) 在 \(x\) 处的 Hessian 半正定”这一命题。
 
 以上四个定义构成了整个形式化的概念骨架。接下来的所有辅助引理和主定理均在此基础上展开。
@@ -249,7 +253,7 @@ def hessianPosSemidefAt (f : E → ℝ) (x : E) : Prop :=
 若不加可微性假设而直接使用 \texttt{fun x => gradient f x} 作为梯度场，则在该函数不可微的点上，\texttt{gradient} 的值不能直接解释为数学意义上了的梯度。为此，本文提供了两个版本的主定理：
 
 \paragraph{版本一（显式梯度场版本）}假设存在一个向量场 \texttt{g : E → E}，在 \(x_0\) 的邻域上 \texttt{g x} 精确等于 \texttt{f} 在 \texttt{x} 处的梯度，且 \texttt{g} 在 \(x_0\) 处的 Fréchet 导数为 \texttt{A}。
-\begin{lstlisting}
+\begin{minted}{lean4}
 theorem second_order_necessary_condition_gradient_field
     {f : E → ℝ} {g : E → E} {x₀ : E} {A : E →L[ℝ] E}
     (hmin : localMinimumAt f x₀)
@@ -257,11 +261,11 @@ theorem second_order_necessary_condition_gradient_field
     (hgrad_zero : g x₀ = 0)
     (hHess : HasFDerivAt g A x₀) :
     posSemidefOp A := ...
-\end{lstlisting}
+\end{minted}
 此版本不依赖 \texttt{gradient} 的全局默认值，所有梯度信息均由假设显式提供，是本文的主形式化版本。
 
 \paragraph{版本二（直接 gradient 版本）}直接使用 mathlib 内置的 \texttt{gradient f}，并附加 \texttt{f} 在邻域内可微的条件。
-\begin{lstlisting}
+\begin{minted}{lean4}
 theorem second_order_necessary_condition_gradient
     {f : E → ℝ} {x₀ : E} {A : E →L[ℝ] E}
     (hmin : localMinimumAt f x₀)
@@ -269,7 +273,7 @@ theorem second_order_necessary_condition_gradient
     (hdiff_near : ∀ᶠ x in 𝓝 x₀, DifferentiableAt ℝ f x)
     (hHess : HasFDerivAt (fun x => gradient f x) A x₀) :
     posSemidefOp A := ...
-\end{lstlisting}
+\end{minted}
 此版本更贴近课堂表述，但证明是通过实例化版本一完成的：在 \texttt{hdiff\_near} 保证的邻域上，\texttt{gradient f} 恰好充当 \texttt{g} 的角色。这种多版本设计既保证了逻辑严谨性，又保留了与原始数学表述的直观联系。
 
 \subsection{为何独立封装一元二阶必要条件}
@@ -278,7 +282,7 @@ theorem second_order_necessary_condition_gradient
 mathlib 中已有若干一元函数极值相关定理，例如 \texttt{deriv\_nonneg\_of\_localMin}；但其假设形式与本文使用的局部导数字段形式并不完全一致。本文中的一元函数 \(\varphi\) 的导数通过梯度与方向向量的内积给出，可导性以 \texttt{∀ᶠ t in 𝓝 0, HasDerivAt φ (φ' t) t}（即在 0 的邻域内导数为 \(\varphi'(t)\)）的形式出现。这种使用 \texttt{Filter} 语言描述“局部成立”的方式是 mathlib 分析学中的标准做法，但也意味着不能直接套用某一条现成定理。
 
 因此，本文将一元二阶必要条件独立封装为引理 \texttt{oneDim\_secondOrderNecessary}：
-\begin{lstlisting}
+\begin{minted}{lean4}
 lemma oneDim_secondOrderNecessary
     {φ φ' : ℝ → ℝ} {l : ℝ}
     (hmin : localMinimumAt φ 0)
@@ -286,7 +290,7 @@ lemma oneDim_secondOrderNecessary
     (hderiv' : HasDerivAt φ' l 0)
     (hφ' : ∀ᶠ t in 𝓝 (0 : ℝ), HasDerivAt φ (φ' t) t) :
     0 ≤ l := ...
-\end{lstlisting}
+\end{minted}
 该引理将一元部分的所有细节封装在一个模块内，使多元主定理只需调用它即可完成证明。形式化的主要困难在于将“充分小的正 \(t\)”翻译成 \texttt{𝓝[>] 0} 等邻域语言，并在 Lean 中处理导数符号与中值定理的组合。这种将纸面证明中隐式使用的步骤显式化为独立引理的策略，是形式化复杂分析证明时的常用方法。
 
 \subsection{证明结构的模块化分解}
@@ -326,11 +330,11 @@ lemma oneDim_secondOrderNecessary
 因此 \(f(x_0)\le f(x_0+tv)\)，即 \(\varphi(0)\le\varphi(t)\)，说明 \(t=0\) 是 \(\varphi\) 的局部极小点。证毕。
 
 Lean 语句：
-\begin{lstlisting}
+\begin{minted}{lean4}
 lemma localMinimumAt_comp_line {f : E → ℝ} {x₀ : E}
     (hmin : localMinimumAt f x₀) (v : E) :
     localMinimumAt (fun t : ℝ => f (x₀ + t • v)) 0 := ...
-\end{lstlisting}
+\end{minted}
 
 \subsection{沿直线的一阶导数与梯度}
 \paragraph{引理 6.2}设 \(f\) 在点 \(x_0+tv\) 处可微，则
@@ -345,13 +349,13 @@ lemma localMinimumAt_comp_line {f : E → ℝ} {x₀ : E}
 该式即为多元函数沿方向 \(v\) 的方向导数，因可微性存在且等于梯度与方向的点积。证毕。
 
 Lean 语句：
-\begin{lstlisting}
+\begin{minted}{lean4}
 lemma hasDerivAt_comp_line_of_hasGradientAt
     {f : E → ℝ} {g : E → E} {x₀ v : E} {t : ℝ}
     (hgrad : HasGradientAt f (g (x₀ + t • v)) (x₀ + t • v)) :
     HasDerivAt (fun s : ℝ => f (x₀ + s • v))
       (inner ℝ (g (x₀ + t • v)) v) t := ...
-\end{lstlisting}
+\end{minted}
 
 \subsection{Hessian 二次型的表示}
 \paragraph{引理 6.3}设梯度函数 \(g(x)=\nabla f(x)\) 在 \(x_0\) 处可微，Jacobi 矩阵为 \(H=H_f(x_0)\)。定义 \(\psi(t)=g(x_0+tv)\cdot v\)，则 \(\psi\) 在 \(0\) 处可导且
@@ -377,13 +381,13 @@ g(x_0+tv)=g(x_0)+H(tv)+o(t)=g(x_0)+tHv+o(t).
 证毕。
 
 Lean 语句：
-\begin{lstlisting}
+\begin{minted}{lean4}
 lemma hasDerivAt_inner_gradientField_line
     {g : E → E} {x₀ v : E} {A : E →L[ℝ] E}
     (hHess : HasFDerivAt g A x₀) :
     HasDerivAt (fun t : ℝ => inner ℝ (g (x₀ + t • v)) v)
       (inner ℝ (A v) v) 0 := ...
-\end{lstlisting}
+\end{minted}
 
 \subsection{一元二阶必要条件}
 \paragraph{引理 6.4（一元函数的二阶必要条件）}设 \(\varphi:\mathbb{R}\to\mathbb{R}\) 在 \(0\) 处局部极小，存在 \(\eta>0\) 使得 \(\varphi\) 在 \((-\eta,\eta)\) 内可导，导数记作 \(\varphi'(t)\)。若 \(\varphi'(0)=0\) 且 \(\varphi'\) 在 \(0\) 处可导，则 \(\varphi''(0)\ge 0\)。
@@ -397,7 +401,7 @@ lemma hasDerivAt_inner_gradientField_line
 由此推出 \(\varphi(b)<\varphi(0)\)，与 \(|b|<\varepsilon\) 时的局部极小性矛盾。因此 \(l\ge 0\)。证毕。
 
 Lean 语句：
-\begin{lstlisting}
+\begin{minted}{lean4}
 lemma oneDim_secondOrderNecessary
     {φ φ' : ℝ → ℝ} {l : ℝ}
     (hmin : localMinimumAt φ 0)
@@ -405,7 +409,7 @@ lemma oneDim_secondOrderNecessary
     (hderiv' : HasDerivAt φ' l 0)
     (hφ' : ∀ᶠ t in 𝓝 (0 : ℝ), HasDerivAt φ (φ' t) t) :
     0 ≤ l := ...
-\end{lstlisting}
+\end{minted}
 通过以上五个引理，我们已将所有必要的分析成分拆解为便于形式化的模块。主定理的证明只需将这些模块按逻辑顺序组合即可。
 
 \section{主定理的形式化证明}
@@ -413,7 +417,7 @@ lemma oneDim_secondOrderNecessary
 
 \subsection{显式梯度场版本}
 下面给出省略部分技术细节后的 Lean 证明骨架：
-\begin{lstlisting}
+\begin{minted}{lean4}
 theorem second_order_necessary_condition_gradient_field
     {f : E → ℝ} {g : E → E} {x₀ : E} {A : E →L[ℝ] E}
     (hmin : localMinimumAt f x₀)
@@ -430,11 +434,11 @@ theorem second_order_necessary_condition_gradient_field
   have hderivφ : HasDerivAt φ 0 0 := ...
   have hderivφ' : HasDerivAt φ' (inner ℝ (A v) v) 0 := ...
   exact oneDim_secondOrderNecessary hmin_line hderivφ hderivφ' hφ'
-\end{lstlisting}
+\end{minted}
 该版本是本文的主形式化版本，所有梯度信息均由假设显式提供，避免了对 \texttt{gradient} 默认值的依赖。
 
 \subsection{直接使用 \texttt{gradient f} 的版本}
-\begin{lstlisting}
+\begin{minted}{lean4}
 theorem second_order_necessary_condition_gradient
     {f : E → ℝ} {x₀ : E} {A : E →L[ℝ] E}
     (hmin : localMinimumAt f x₀)
@@ -442,18 +446,18 @@ theorem second_order_necessary_condition_gradient
     (hdiff_near : ∀ᶠ x in 𝓝 x₀, DifferentiableAt ℝ f x)
     (hHess : HasFDerivAt (fun x => gradient f x) A x₀) :
     posSemidefOp A := ...
-\end{lstlisting}
+\end{minted}
 此版本更贴近课堂表述，证明通过实例化版本一完成：在 \texttt{hdiff\_near} 保证的邻域上，\texttt{gradient f} 充当了 \texttt{g} 的角色。
 
 两个定理的证明结构完全遵循第 2 节所述的直线限制法：给定任意方向 \(v\)，构造一元函数 \(\varphi\)，利用引理 6.1–6.4 依次推得 \(\langle A v, v\rangle \ge 0\)。Lean 代码中的 \texttt{intro v} 即对应“任取方向”，而最终调用的 \texttt{oneDim\_secondOrderNecessary} 则对应应用一元二阶必要条件。
 
 \section{与传统 Hessian 矩阵的关系}
 本形式化中证明的 Hessian 算子是定义在实内积空间上的连续线性映射，并不显式涉及偏导数或矩阵元素。但在有限维情形下，可以建立与传统 Hessian 矩阵的联系。我们以 \(n\) 维欧氏空间 \texttt{Euc n := EuclideanSpace ℝ (Fin n)} 为例，定义标准基下算子的矩阵表示：
-\begin{lstlisting}
+\begin{minted}{lean4}
 noncomputable def hessianMatrixOfOp {n : ℕ} (A : Euc n →L[ℝ] Euc n) :
     Matrix (Fin n) (Fin n) ℝ :=
   fun i j => inner ℝ (EuclideanSpace.single i 1) (A (EuclideanSpace.single j 1))
-\end{lstlisting}
+\end{minted}
 此处 \texttt{EuclideanSpace.single i 1} 是第 \(i\) 个标准基向量。该矩阵的第 \((i,j)\) 元正是 \(e_i \cdot (A e_j)\)。若取 \(A = \operatorname{hessianOp} f x\)，则 \texttt{hessianMatrixOfOp A} 可视为 Hessian operator 在标准基下的矩阵表示。从数学上看，标准正交基下的算子二次型 \(\langle Av,v\rangle\) 与对应矩阵二次型 \(v^{\top}Hv\) 一致。
 
 \section{结论}
@@ -471,6 +475,17 @@ noncomputable def hessianMatrixOfOp {n : ℕ} (A : Euc n →L[ℝ] Euc n) :
 [5] L. de Moura, S. Ullrich. The Lean 4 Theorem Prover and Programming Language. In: Proceedings of the 28th International Conference on Automated Deduction (CADE 28), LNCS 12699, pp. 625–635, 2021.
 
 \bigskip\hrule\bigskip
+
+\clearpage
+\appendix
+\section{Lean 完整代码}
+本附录收录项目中的 Lean 源文件完整内容。
+
+\subsection{根模块 \texttt{Hessian.lean}}
+\inputminted{lean4}{Hessian.lean}
+
+\subsection{主形式化文件 \texttt{Hessian/Basic.lean}}
+\inputminted{lean4}{Hessian/Basic.lean}
 
 \end{document}
 

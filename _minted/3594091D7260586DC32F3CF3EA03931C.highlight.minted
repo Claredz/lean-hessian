@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{theorem}\PYG{+w}{ }\PYG{n}{second\PYGZus{}order\PYGZus{}necessary\PYGZus{}condition\PYGZus{}gradient\PYGZus{}field}
+\PYG{+w}{    }\PYG{o}{\PYGZob{}}\PYG{n}{f}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{+w}{ }\PYG{n+nb+bp}{→}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{o}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{g}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{+w}{ }\PYG{n+nb+bp}{→}\PYG{+w}{ }\PYG{n}{E}\PYG{o}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{x₀}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{o}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{A}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{+w}{ }\PYG{n+nb+bp}{→}\PYG{n}{L}\PYG{o}{[}\PYG{n}{ℝ}\PYG{o}{]}\PYG{+w}{ }\PYG{n}{E}\PYG{o}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hmin}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{localMinimumAt}\PYG{+w}{ }\PYG{n}{f}\PYG{+w}{ }\PYG{n}{x₀}\PYG{o}{)}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hgrad\PYGZus{}near}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n+nb+bp}{∀ᶠ}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{𝓝}\PYG{+w}{ }\PYG{n}{x₀}\PYG{o}{,}\PYG{+w}{ }\PYG{n}{HasGradientAt}\PYG{+w}{ }\PYG{n}{f}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{g}\PYG{+w}{ }\PYG{n}{x}\PYG{o}{)}\PYG{+w}{ }\PYG{n}{x}\PYG{o}{)}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hgrad\PYGZus{}zero}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{g}\PYG{+w}{ }\PYG{n}{x₀}\PYG{+w}{ }\PYG{n+nb+bp}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{o}{)}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hHess}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{HasFDerivAt}\PYG{+w}{ }\PYG{n}{g}\PYG{+w}{ }\PYG{n}{A}\PYG{+w}{ }\PYG{n}{x₀}\PYG{o}{)}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{posSemidefOp}\PYG{+w}{ }\PYG{n}{A}\PYG{+w}{ }\PYG{o}{:=}\PYG{+w}{ }\PYG{n+nb+bp}{...}
+\end{MintedVerbatim}

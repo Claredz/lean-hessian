@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{localMinimumAt\PYGZus{}comp\PYGZus{}line}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{f}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{+w}{ }\PYG{n+nb+bp}{→}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{o}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{x₀}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{o}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hmin}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{localMinimumAt}\PYG{+w}{ }\PYG{n}{f}\PYG{+w}{ }\PYG{n}{x₀}\PYG{o}{)}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{v}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{o}{)}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{localMinimumAt}\PYG{+w}{ }\PYG{o}{(}\PYG{k}{fun}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{+w}{ }\PYG{n+nb+bp}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{f}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{x₀}\PYG{+w}{ }\PYG{n+nb+bp}{+}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{n+nb+bp}{•}\PYG{+w}{ }\PYG{n}{v}\PYG{o}{))}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{:=}\PYG{+w}{ }\PYG{n+nb+bp}{...}
+\end{MintedVerbatim}

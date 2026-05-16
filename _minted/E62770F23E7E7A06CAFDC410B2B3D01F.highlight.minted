@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{noncomputable}\PYG{+w}{ }\PYG{k+kn}{def}\PYG{+w}{ }\PYG{n}{hessianMatrixOfOp}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{ℕ}\PYG{o}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{A}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{Euc}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{n+nb+bp}{→}\PYG{n}{L}\PYG{o}{[}\PYG{n}{ℝ}\PYG{o}{]}\PYG{+w}{ }\PYG{n}{Euc}\PYG{+w}{ }\PYG{n}{n}\PYG{o}{)}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{Matrix}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{Fin}\PYG{+w}{ }\PYG{n}{n}\PYG{o}{)}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{Fin}\PYG{+w}{ }\PYG{n}{n}\PYG{o}{)}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{+w}{ }\PYG{o}{:=}
+\PYG{+w}{  }\PYG{k}{fun}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{n+nb+bp}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{inner}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{EuclideanSpace}\PYG{n+nb+bp}{.}\PYG{n}{single}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{)}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{A}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{EuclideanSpace}\PYG{n+nb+bp}{.}\PYG{n}{single}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{))}
+\end{MintedVerbatim}

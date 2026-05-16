@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{hasDerivAt\PYGZus{}inner\PYGZus{}gradientField\PYGZus{}line}
+\PYG{+w}{    }\PYG{o}{\PYGZob{}}\PYG{n}{g}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{+w}{ }\PYG{n+nb+bp}{→}\PYG{+w}{ }\PYG{n}{E}\PYG{o}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{x₀}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{o}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{A}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{E}\PYG{+w}{ }\PYG{n+nb+bp}{→}\PYG{n}{L}\PYG{o}{[}\PYG{n}{ℝ}\PYG{o}{]}\PYG{+w}{ }\PYG{n}{E}\PYG{o}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hHess}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{HasFDerivAt}\PYG{+w}{ }\PYG{n}{g}\PYG{+w}{ }\PYG{n}{A}\PYG{+w}{ }\PYG{n}{x₀}\PYG{o}{)}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{HasDerivAt}\PYG{+w}{ }\PYG{o}{(}\PYG{k}{fun}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{+w}{ }\PYG{n+nb+bp}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{inner}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{g}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{x₀}\PYG{+w}{ }\PYG{n+nb+bp}{+}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{n+nb+bp}{•}\PYG{+w}{ }\PYG{n}{v}\PYG{o}{))}\PYG{+w}{ }\PYG{n}{v}\PYG{o}{)}
+\PYG{+w}{      }\PYG{o}{(}\PYG{n}{inner}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{A}\PYG{+w}{ }\PYG{n}{v}\PYG{o}{)}\PYG{+w}{ }\PYG{n}{v}\PYG{o}{)}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{:=}\PYG{+w}{ }\PYG{n+nb+bp}{...}
+\end{MintedVerbatim}

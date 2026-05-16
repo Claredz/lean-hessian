@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{oneDim\PYGZus{}secondOrderNecessary}
+\PYG{+w}{    }\PYG{o}{\PYGZob{}}\PYG{n}{φ}\PYG{+w}{ }\PYG{n}{φ\PYGZsq{}}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{+w}{ }\PYG{n+nb+bp}{→}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{o}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{\PYGZob{}}\PYG{n}{l}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{o}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hmin}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{localMinimumAt}\PYG{+w}{ }\PYG{n}{φ}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{o}{)}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hderiv}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{HasDerivAt}\PYG{+w}{ }\PYG{n}{φ}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{o}{)}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hderiv\PYGZsq{}}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{HasDerivAt}\PYG{+w}{ }\PYG{n}{φ\PYGZsq{}}\PYG{+w}{ }\PYG{n}{l}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{o}{)}
+\PYG{+w}{    }\PYG{o}{(}\PYG{n}{hφ\PYGZsq{}}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n+nb+bp}{∀ᶠ}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{𝓝}\PYG{+w}{ }\PYG{o}{(}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{ℝ}\PYG{o}{),}\PYG{+w}{ }\PYG{n}{HasDerivAt}\PYG{+w}{ }\PYG{n}{φ}\PYG{+w}{ }\PYG{o}{(}\PYG{n}{φ\PYGZsq{}}\PYG{+w}{ }\PYG{n}{t}\PYG{o}{)}\PYG{+w}{ }\PYG{n}{t}\PYG{o}{)}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{n+nb+bp}{≤}\PYG{+w}{ }\PYG{n}{l}\PYG{+w}{ }\PYG{o}{:=}\PYG{+w}{ }\PYG{n+nb+bp}{...}
+\end{MintedVerbatim}

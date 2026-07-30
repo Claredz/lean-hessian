@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-- `lake build` — build the `Hessian` Lean library. This currently succeeds with a warning because `second_order_necessary_condition_gradient` uses `sorry`.
+- `lake build` — build the `Hessian` Lean library. With the pinned Lean toolchain (`leanprover/lean4:v4.29.1`), this currently succeeds locally.
 - `lake env lean Hessian/Basic.lean` — check the main source file directly; use this as the closest equivalent to running a single test/file check.
 - `lake env lean Hessian.lean` — check the root module and its imports.
 - There is no dedicated test suite or test target in this repository at present.
@@ -21,10 +21,11 @@ The Lake configuration defines a single Lean library:
 
 `Hessian/Basic.lean` sets up a real inner product space context and defines:
 
-- `LocalMinimumAt` for local minima of functions `E → ℝ`.
-- `HessianOp` as the Fréchet derivative of the gradient, `D(∇f)(x)`.
-- `PosSemidefOp` and `HessianPosSemidefAt` for positive semidefinite continuous linear operators and Hessians.
-- `second_order_necessary_condition_gradient`, the main second-order necessary condition theorem, currently left as `sorry`.
+- `localMinimumAt` for local minima of functions `E → ℝ`.
+- `hessianOp` as the Fréchet derivative of the gradient, `D(∇f)(x)`.
+- `posSemidefOp` and `hessianPosSemidefAt` for positive semidefinite continuous linear operators and Hessians.
+- `second_order_necessary_condition_gradient_field`, a gradient-field version of the second-order necessary condition.
+- `second_order_necessary_condition_gradient`, a version stated using mathlib's `gradient f`.
 - Basic closure/examples for positive semidefinite operators: zero, addition, nonnegative scalar multiplication, constant-function Hessian.
 - A finite-dimensional matrix representation section using `EuclideanSpace ℝ (Fin n)`.
 
@@ -33,3 +34,7 @@ When adding new Lean files under `Hessian/`, import them from `Hessian.lean` if 
 ## CI
 
 `.github/workflows/lean_action_ci.yml` runs on pushes, pull requests, and manual dispatch. It checks out the repository and runs `leanprover/lean-action@v1` on Ubuntu.
+
+## Authorship/context note
+
+This repository is a course-group / AI-assisted Lean formalization attempt. Do not describe it as independently completed formalization work. When editing documentation, keep the project description accurate: the code is mainly AI-assisted, while the human work centers on problem selection, understanding, checking, organization, and reflection.
